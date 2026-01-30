@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba SENA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .question {
+            margin-bottom: 30px;
+        }
+        .question-text {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #34495e;
+        }
+        .instruction {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+        .option {
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        .option:hover {
+            border-color: #3498db;
+            background-color: #f8f9fa;
+        }
+        .option.selected {
+            border-color: #3498db;
+            background-color: #e3f2fd;
+        }
+        .priority-selector {
+            display: flex;
+            gap: 10px;
+            margin-right: 15px;
+        }
+        .priority-btn {
+            width: 35px;
+            height: 35px;
+            border: 2px solid #bdc3c7;
+            background-color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .priority-btn:hover {
+            border-color: #3498db;
+            transform: scale(1.1);
+        }
+        .priority-btn.selected {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+        .option-text {
+            flex: 1;
+            line-height: 1.5;
+        }
+        .submit-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+        .submit-btn:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .result.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .result.warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .incorrect-answer {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prueba SENA</h1>
+        
+        <div class="question">
+            <div class="instruction">
+                Seleccionar del 1 al 5, donde 1 es lo que haría primero y 5 lo que haría al final
+            </div>
+            
+            <div class="question-text">
+                Cuando una persona requiere de un consejo frente a una situación difícil, usted:
+            </div>
+            
+            <ul class="options">
+                <li class="option" data-option="1">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Define su postura personal ante el problema, para poder ayudar a solucionarlo</div>
+                </li>
+                
+                <li class="option" data-option="2">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Atiende las expresiones emocionales de la persona que le habla</div>
+                </li>
+                
+                <li class="option" data-option="3">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Es atento, escucha comprensivamente y motiva a la persona a resolverlo por sí misma</div>
+                </li>
+                
+                <li class="option" data-option="4">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Indaga la situación sin involucrarse emocionalmente porque puede afectar la solución</div>
+                </li>
+                
+                <li class="option" data-option="5">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Escucha con mucha concentración los detalles de la conversación</div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="question" style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #ecf0f1;">
+            <div class="instruction">
+                Seleccionar del 1 al 5, donde 1 es lo que haría primero y 5 lo que haría al final
+            </div>
+            
+            <div class="question-text">
+                Usted es coordinador del campeonato de natación nacional y tiene como objetivo lograr que su equipo sea considerado de alto rendimiento. Para ello, usted piensa que este debe:
+            </div>
+            
+            <ul class="options">
+                <li class="option" data-option="6">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Delimitar los criterios de desempeño individual y grupal</div>
+                </li>
+                
+                <li class="option" data-option="7">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Estar orientado hacia los resultados</div>
+                </li>
+                
+                <li class="option" data-option="8">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Tener una comprensión clara de los objetivos</div>
+                </li>
+                
+                <li class="option" data-option="9">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Definir la responsabilidad de cada integrante</div>
+                </li>
+                
+                <li class="option" data-option="10">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Cooperar y colaborar con un alto grado de confianza</div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="question" style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #ecf0f1;">
+            <div class="instruction">
+                Seleccionar del 1 al 5, donde 1 es el área en que más se destacó y 5 el área en que menos se destacó
+            </div>
+            
+            <div class="question-text">
+                Usted en el colegio se destacó por obtener los mejores resultados en:
+            </div>
+            
+            <ul class="options">
+                <li class="option" data-option="11">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Informática</div>
+                </li>
+                
+                <li class="option" data-option="12">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Español</div>
+                </li>
+                
+                <li class="option" data-option="13">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Laboratorio</div>
+                </li>
+                
+                <li class="option" data-option="14">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Dibujo técnico</div>
+                </li>
+                
+                <li class="option" data-option="15">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Matemáticas</div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="question" style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #ecf0f1;">
+            <div class="instruction">
+                Seleccionar del 1 al 5, donde 1 es lo que haría primero y 5 lo que haría al final
+            </div>
+            
+            <div class="question-text">
+                Usted es delegado como representante de los estudiantes para realizar una exposición creativa a todos los líderes de otros colegios. Para lograr una presentación brillante, utilizaría como estrategia:
+            </div>
+            
+            <ul class="options">
+                <li class="option" data-option="16">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Hacer preguntas cruciales</div>
+                </li>
+                
+                <li class="option" data-option="17">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Añadir música en las diapositivas</div>
+                </li>
+                
+                <li class="option" data-option="18">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Contar una historia</div>
+                </li>
+                
+                <li class="option" data-option="19">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Organizar la presentación solo con puntos claves</div>
+                </li>
+                
+                <li class="option" data-option="20">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Incluir videos reflexivos</div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="question" style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #ecf0f1;">
+            <div class="instruction">
+                Seleccionar del 1 al 5, donde 1 es lo que haría primero y 5 lo que haría al final
+            </div>
+            
+            <div class="question-text">
+                Para remodelar su casa, lo mejor es:
+            </div>
+            
+            <ul class="options">
+                <li class="option" data-option="21">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Diseñar un plan de remodelación empezando por lo más importante</div>
+                </li>
+                
+                <li class="option" data-option="22">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Investigar las nuevas tendencias en remodelación</div>
+                </li>
+                
+                <li class="option" data-option="23">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Cotizar alternativas de remodelación</div>
+                </li>
+                
+                <li class="option" data-option="24">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Consultar un experto en el tema</div>
+                </li>
+                
+                <li class="option" data-option="25">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Indagar material económico y hacer solo lo que está en las posibilidades</div>
+                </li>
+            </ul>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <button class="submit-btn" id="submitBtn">Verificar Respuestas</button>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 40px;">
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        let selectedPriorities = {};
+        
+        // Respuestas correctas según el orden esperado
+        const correctAnswers = {
+            // Primera pregunta
+            "5": "1",  // Escucha con mucha concentración los detalles de la conversación
+            "2": "2",  // Atiende las expresiones emocionales de la persona que le habla
+            "1": "3",  // Define su postura personal ante el problema, para poder ayudar a solucionarlo
+            "3": "4",  // Es atento, escucha comprensivamente y motiva a la persona a resolverlo por sí misma
+            "4": "5",  // Indaga la situación sin involucrarse emocionalmente porque puede afectar la solución
+            
+            // Segunda pregunta - Orden lógico para equipo de alto rendimiento
+            "8": "1",  // Tener una comprensión clara de los objetivos (fundamento)
+            "6": "2",  // Delimitar los criterios de desempeño individual y grupal (medición)
+            "9": "3",  // Definir la responsabilidad de cada integrante (roles)
+            "10": "4", // Cooperar y colaborar con un alto grado de confianza (ejecución)
+            "7": "5",  // Estar orientado hacia los resultados (consecuencia)
+            
+            // Cuarta pregunta - Estrategia para presentación (enfocada a desarrollador de sistemas)
+            "19": "1", // Organizar la presentación solo con puntos claves (estructurado/lógico)
+            "16": "2", // Hacer preguntas cruciales (pensamiento crítico/análisis)
+            "18": "3", // Contar una historia (comunicación efectiva)
+            "20": "4", // Incluir videos reflexivos (apoyo visual)
+            "17": "5",  // Añadir música en las diapositivas (elemento secundario)
+            
+            // Quinta pregunta - Remodelación de casa (orden lógico y práctico)
+            "21": "1", // Diseñar un plan de remodelación empezando por lo más importante (planificación)
+            "24": "2", // Consultar un experto en el tema (asesoramiento profesional)
+            "23": "3", // Cotizar alternativas de remodelación (evaluación económica)
+            "22": "4", // Investigar las nuevas tendencias en remodelación (inspiración)
+            "25": "5"  // Indagar material económico y hacer solo lo que está en las posibilidades (ajuste presupuestario)
+        };
+        
+        // Manejar clic en los botones de prioridad
+        document.querySelectorAll('.priority-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                const option = this.closest('.option');
+                const optionId = option.dataset.option;
+                const priority = this.dataset.priority;
+                
+                // Limpiar selección anterior de esta opción
+                option.querySelectorAll('.priority-btn').forEach(b => b.classList.remove('selected'));
+                
+                // Marcar este botón como seleccionado
+                this.classList.add('selected');
+                
+                // Guardar la selección
+                selectedPriorities[optionId] = priority;
+                
+                // Marcar la opción como seleccionada
+                option.classList.add('selected');
+                
+                // Verificar si todas las opciones tienen prioridad
+                checkAllSelected();
+            });
+        });
+        
+        // Manejar clic en la opción (alternativa)
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const firstBtn = this.querySelector('.priority-btn[data-priority="1"]');
+                if (firstBtn && !this.querySelector('.priority-btn.selected')) {
+                    firstBtn.click();
+                }
+            });
+        });
+        
+        function checkAllSelected() {
+            // El botón siempre está disponible
+            document.getElementById('submitBtn').disabled = false;
+        }
+        
+        // Manejar verificación
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const resultDiv = document.getElementById('result');
+            
+            // Mostrar resultados por separado para cada pregunta
+            let results = '<h3>Verificación de respuestas:</h3>';
+            
+            // Pregunta 1
+            results += '<h4>Pregunta 1: Consejos en situación difícil</h4><ul>';
+            let correctCount1 = 0;
+            let incorrectCount1 = 0;
+            const question1Options = ['1', '2', '3', '4', '5'];
+            
+            const sortedOptions1 = question1Options
+                .sort((a, b) => {
+                    const priorityA = selectedPriorities[a] || 999; // Si no está respondido, ponerlo al final
+                    const priorityB = selectedPriorities[b] || 999;
+                    return parseInt(priorityA) - parseInt(priorityB);
+                });
+            
+            sortedOptions1.forEach(optionId => {
+                const option = document.querySelector(`.option[data-option="${optionId}"]`);
+                const text = option.querySelector('.option-text').textContent;
+                const priority = selectedPriorities[optionId];
+                const correctPriority = correctAnswers[optionId];
+                
+                if (!priority) {
+                    // No respondido - contar como incorrecto
+                    incorrectCount1++;
+                    results += `<li><span class="incorrect-answer">Sin respuesta.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
+                } else {
+                    const isCorrect = priority === correctPriority;
+                    if (isCorrect) {
+                        correctCount1++;
+                        results += `<li><span class="correct-answer">${priority}.</span> ${text} ✓</li>`;
+                    } else {
+                        incorrectCount1++;
+                        results += `<li><span class="incorrect-answer">${priority}.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
+                    }
+                }
+            });
+            results += '</ul>';
+            results += `<p><strong>Resumen Pregunta 1:</strong> ${correctCount1} correctas, ${incorrectCount1} incorrectas</p>`;
+            
+            // Pregunta 2
+            results += '<h4>Pregunta 2: Equipo de alto rendimiento</h4><ul>';
+            let correctCount2 = 0;
+            let incorrectCount2 = 0;
+            const question2Options = ['6', '7', '8', '9', '10'];
+            
+            const sortedOptions2 = question2Options
+                .sort((a, b) => {
+                    const priorityA = selectedPriorities[a] || 999;
+                    const priorityB = selectedPriorities[b] || 999;
+                    return parseInt(priorityA) - parseInt(priorityB);
+                });
+            
+            sortedOptions2.forEach(optionId => {
+                const option = document.querySelector(`.option[data-option="${optionId}"]`);
+                const text = option.querySelector('.option-text').textContent;
+                const priority = selectedPriorities[optionId];
+                const correctPriority = correctAnswers[optionId];
+                
+                if (!priority) {
+                    // No respondido - contar como incorrecto
+                    incorrectCount2++;
+                    results += `<li><span class="incorrect-answer">Sin respuesta.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
+                } else {
+                    const isCorrect = priority === correctPriority;
+                    if (isCorrect) {
+                        correctCount2++;
+                        results += `<li><span class="correct-answer">${priority}.</span> ${text} ✓</li>`;
+                    } else {
+                        incorrectCount2++;
+                        results += `<li><span class="incorrect-answer">${priority}.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
+                    }
+                }
+            });
+            results += '</ul>';
+            results += `<p><strong>Resumen Pregunta 2:</strong> ${correctCount2} correctas, ${incorrectCount2} incorrectas</p>`;
+            
+            // Pregunta 3 (sin respuestas correctas, pero con puntos extras)
+            results += '<h4>Pregunta 3: Áreas de destacado en el colegio</h4><ul>';
+            const question3Options = ['11', '12', '13', '14', '15'];
+            let bonusPoints = 0;
+            
+            const sortedOptions3 = question3Options
+                .sort((a, b) => {
+                    const priorityA = selectedPriorities[a] || 999;
+                    const priorityB = selectedPriorities[b] || 999;
+                    return parseInt(priorityA) - parseInt(priorityB);
+                });
+            
+            sortedOptions3.forEach(optionId => {
+                const option = document.querySelector(`.option[data-option="${optionId}"]`);
+                const text = option.querySelector('.option-text').textContent;
+                const priority = selectedPriorities[optionId];
+                
+                if (!priority) {
+                    // No respondido - sin puntos extra
+                    results += `<li><span style="color: #7f8c8d;">Sin respuesta.</span> ${text}</li>`;
+                } else {
+                    // Dar puntos extras si Informática (11) o Matemáticas (15) están en las primeras 2 posiciones
+                    if ((optionId === '11' || optionId === '15') && (priority === '1' || priority === '2')) {
+                        bonusPoints++;
+                        results += `<li><span class="correct-answer">${priority}.</span> ${text} ✓ (Punto extra)</li>`;
+                    } else {
+                        results += `<li><span style="color: #7f8c8d;">${priority}.</span> ${text}</li>`;
+                    }
+                }
+            });
+            results += '</ul>';
+            results += `<p><strong>Resumen Pregunta 3:</strong> ${bonusPoints} puntos extras obtenidos</p>`;
+            
+            // Pregunta 4
+            results += '<h4>Pregunta 4: Estrategia para presentación creativa</h4><ul>';
+            let correctCount4 = 0;
+            let incorrectCount4 = 0;
+            const question4Options = ['16', '17', '18', '19', '20'];
+            
+            const sortedOptions4 = question4Options
+                .sort((a, b) => {
+                    const priorityA = selectedPriorities[a] || 999;
+                    const priorityB = selectedPriorities[b] || 999;
+                    return parseInt(priorityA) - parseInt(priorityB);
+                });
+            
+            sortedOptions4.forEach(optionId => {
+                const option = document.querySelector(`.option[data-option="${optionId}"]`);
+                const text = option.querySelector('.option-text').textContent;
+                const priority = selectedPriorities[optionId];
+                const correctPriority = correctAnswers[optionId];
+                
+                if (!priority) {
+                    // No respondido - contar como incorrecto
+                    incorrectCount4++;
+                    results += `<li><span class="incorrect-answer">Sin respuesta.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
+                } else {
+                    const isCorrect = priority === correctPriority;
+                    if (isCorrect) {
+                        correctCount4++;
+                        results += `<li><span class="correct-answer">${priority}.</span> ${text} ✓</li>`;
+                    } else {
+                        incorrectCount4++;
+                        results += `<li><span class="incorrect-answer">${priority}.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
+                    }
+                }
+            });
+            results += '</ul>';
+            results += `<p><strong>Resumen Pregunta 4:</strong> ${correctCount4} correctas, ${incorrectCount4} incorrectas</p>`;
+            
+            // Pregunta 5
+            results += '<h4>Pregunta 5: Remodelación de casa</h4><ul>';
+            let correctCount5 = 0;
+            let incorrectCount5 = 0;
+            const question5Options = ['21', '22', '23', '24', '25'];
+            
+            const sortedOptions5 = question5Options
+                .sort((a, b) => {
+                    const priorityA = selectedPriorities[a] || 999;
+                    const priorityB = selectedPriorities[b] || 999;
+                    return parseInt(priorityA) - parseInt(priorityB);
+                });
+            
+            sortedOptions5.forEach(optionId => {
+                const option = document.querySelector(`.option[data-option="${optionId}"]`);
+                const text = option.querySelector('.option-text').textContent;
+                const priority = selectedPriorities[optionId];
+                const correctPriority = correctAnswers[optionId];
+                
+                if (!priority) {
+                    // No respondido - contar como incorrecto
+                    incorrectCount5++;
+                    results += `<li><span class="incorrect-answer">Sin respuesta.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
+                } else {
+                    const isCorrect = priority === correctPriority;
+                    if (isCorrect) {
+                        correctCount5++;
+                        results += `<li><span class="correct-answer">${priority}.</span> ${text} ✓</li>`;
+                    } else {
+                        incorrectCount5++;
+                        results += `<li><span class="incorrect-answer">${priority}.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
+                    }
+                }
+            });
+            results += '</ul>';
+            results += `<p><strong>Resumen Pregunta 5:</strong> ${correctCount5} correctas, ${incorrectCount5} incorrectas</p>`;
+            
+            // Resumen general
+            const totalCorrect = correctCount1 + correctCount2 + correctCount4 + correctCount5;
+            const totalIncorrect = incorrectCount1 + incorrectCount2 + incorrectCount4 + incorrectCount5;
+            const totalQuestions = 20;
+            const totalWithBonus = totalCorrect + bonusPoints;
+            const percentage = Math.round((totalCorrect / totalQuestions) * 100);
+            const percentageWithBonus = Math.round((totalWithBonus / totalQuestions) * 100);
+            
+            results += `<h4>Resumen General:</h4>`;
+            results += `<p><strong>${totalCorrect} respuestas correctas</strong> y <strong>${totalIncorrect} respuestas incorrectas</strong> de ${totalQuestions} totales (${percentage}%)</p>`;
+            results += `<p><strong>Puntos extras:</strong> ${bonusPoints} (Total con bonificación: ${totalWithBonus}/${totalQuestions} = ${percentageWithBonus}%)</p>`;
+            results += `<p>Pregunta 1: ${correctCount1}/5 correctas</p>`;
+            results += `<p>Pregunta 2: ${correctCount2}/5 correctas</p>`;
+            results += `<p>Pregunta 3: ${bonusPoints}/2 puntos extras posibles</p>`;
+            results += `<p>Pregunta 4: ${correctCount4}/5 correctas</p>`;
+            results += `<p>Pregunta 5: ${correctCount5}/5 correctas</p>`;
+            
+            if (percentageWithBonus >= 90) {
+                results += '<p class="correct-answer">¡Excelente! Tu rendimiento es sobresaliente.</p>';
+                resultDiv.className = 'result success';
+            } else if (percentageWithBonus >= 70) {
+                results += '<p class="correct-answer">¡Buen trabajo! Tienes un buen desempeño.</p>';
+                resultDiv.className = 'result warning';
+            } else {
+                results += '<p class="incorrect-answer">Necesitas mejorar tu rendimiento.</p>';
+                resultDiv.className = 'result warning';
+            }
+            
+            // Mostrar respuestas correctas
+            results += '<h4>Orden correcto - Pregunta 1:</h4><ol>';
+            const correctOrder1 = [
+                { id: "5", text: "Escucha con mucha concentración los detalles de la conversación" },
+                { id: "2", text: "Atiende las expresiones emocionales de la persona que le habla" },
+                { id: "1", text: "Define su postura personal ante el problema, para poder ayudar a solucionarlo" },
+                { id: "3", text: "Es atento, escucha comprensivamente y motiva a la persona a resolverlo por sí misma" },
+                { id: "4", text: "Indaga la situación sin involucrarse emocionalmente porque puede afectar la solución" }
+            ];
+            
+            correctOrder1.forEach(item => {
+                results += `<li>${item.text}</li>`;
+            });
+            results += '</ol>';
+            
+            results += '<h4>Orden correcto - Pregunta 2:</h4><ol>';
+            const correctOrder2 = [
+                { id: "8", text: "Tener una comprensión clara de los objetivos" },
+                { id: "6", text: "Delimitar los criterios de desempeño individual y grupal" },
+                { id: "9", text: "Definir la responsabilidad de cada integrante" },
+                { id: "10", text: "Cooperar y colaborar con un alto grado de confianza" },
+                { id: "7", text: "Estar orientado hacia los resultados" }
+            ];
+            
+            correctOrder2.forEach(item => {
+                results += `<li>${item.text}</li>`;
+            });
+            results += '</ol>';
+            
+            results += '<h4>Orden correcto - Pregunta 4:</h4><ol>';
+            const correctOrder4 = [
+                { id: "19", text: "Organizar la presentación solo con puntos claves" },
+                { id: "16", text: "Hacer preguntas cruciales" },
+                { id: "18", text: "Contar una historia" },
+                { id: "20", text: "Incluir videos reflexivos" },
+                { id: "17", text: "Añadir música en las diapositivas" }
+            ];
+            
+            correctOrder4.forEach(item => {
+                results += `<li>${item.text}</li>`;
+            });
+            results += '</ol>';
+            
+            results += '<h4>Orden correcto - Pregunta 5:</h4><ol>';
+            const correctOrder5 = [
+                { id: "21", text: "Diseñar un plan de remodelación empezando por lo más importante" },
+                { id: "24", text: "Consultar un experto en el tema" },
+                { id: "23", text: "Cotizar alternativas de remodelación" },
+                { id: "22", text: "Investigar las nuevas tendencias en remodelación" },
+                { id: "25", text: "Indagar material económico y hacer solo lo que está en las posibilidades" }
+            ];
+            
+            correctOrder5.forEach(item => {
+                results += `<li>${item.text}</li>`;
+            });
+            results += '</ol>';
+            
+            resultDiv.innerHTML = results;
+            resultDiv.style.display = 'block';
+            
+            // Cambiar texto del botón a "Verificado"
+            this.textContent = 'Verificado';
+        });
+    </script>
+</body>
+</html>

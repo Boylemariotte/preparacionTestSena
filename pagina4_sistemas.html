@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba SENA - Página 4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .question {
+            margin-bottom: 30px;
+        }
+        .question-text {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #34495e;
+            line-height: 1.5;
+        }
+        .instruction {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+        .option {
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        .option:hover {
+            border-color: #3498db;
+            background-color: #f8f9fa;
+        }
+        .option.selected {
+            border-color: #3498db;
+            background-color: #e3f2fd;
+        }
+        .priority-selector {
+            display: flex;
+            gap: 10px;
+            margin-right: 15px;
+        }
+        .priority-btn {
+            width: 35px;
+            height: 35px;
+            border: 2px solid #bdc3c7;
+            background-color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .priority-btn:hover {
+            border-color: #3498db;
+            transform: scale(1.1);
+        }
+        .priority-btn.selected {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+        .option-text {
+            flex: 1;
+            line-height: 1.5;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+        }
+        .page-info {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .nav-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .nav-btn.prev {
+            background-color: #95a5a6;
+            color: white;
+        }
+        .nav-btn:hover {
+            opacity: 0.8;
+        }
+        .submit-btn {
+            background-color: #27ae60;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .submit-btn:hover {
+            background-color: #219a52;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .result.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .result.warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .incorrect-answer {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prueba SENA - Página 4</h1>
+        
+        <div class="question">
+            <div class="instruction">
+                Seleccionar del 1 al 5, donde 1 es lo más importante y 5 es lo menos importante
+            </div>
+            
+            <div class="question-text">
+                Como futuro desarrollador de software, ¿cuál de estas habilidades es la más importante para empezar a programar?
+            </div>
+            
+            <ul class="options">
+                <li class="option" data-option="26">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Saber resolver problemas lógicos</div>
+                </li>
+                
+                <li class="option" data-option="27">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Conocer al menos un lenguaje de programación</div>
+                </li>
+                
+                <li class="option" data-option="28">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Tener buena paciencia y perseverancia</div>
+                </li>
+                
+                <li class="option" data-option="29">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Saber buscar información en internet</div>
+                </li>
+                
+                <li class="option" data-option="30">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Trabajar bien en equipo</div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="question" style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #ecf0f1;">
+            <div class="instruction">
+                Seleccionar del 1 al 5, donde 1 es lo más importante y 5 es lo menos importante
+            </div>
+            
+            <div class="question-text">
+                ¿Cuál es la mejor manera de aprender a programar cuando estás empezando?
+            </div>
+            
+            <ul class="options">
+                <li class="option" data-option="31">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Practicar con ejercicios sencillos todos los días</div>
+                </li>
+                
+                <li class="option" data-option="32">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Ver tutoriales en video y seguirlos paso a paso</div>
+                </li>
+                
+                <li class="option" data-option="33">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Hacer proyectos pequeños y personales</div>
+                </li>
+                
+                <li class="option" data-option="34">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Leer libros y documentación oficial</div>
+                </li>
+                
+                <li class="option" data-option="35">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Unirse a comunidades de programadores</div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="question" style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #ecf0f1;">
+            <div class="instruction">
+                Seleccionar del 1 al 5, donde 1 es lo más importante y 5 es lo menos importante
+            </div>
+            
+            <div class="question-text">
+                ¿Qué tipo de aplicaciones web son más fáciles de crear para un principiante?
+            </div>
+            
+            <ul class="options">
+                <li class="option" data-option="36">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Páginas web informativas (blog, portafolio)</div>
+                </li>
+                
+                <li class="option" data-option="37">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Calculadoras y herramientas simples</div>
+                </li>
+                
+                <li class="option" data-option="38">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Juegos sencillos (ahorcado, tres en raya)</div>
+                </li>
+                
+                <li class="option" data-option="39">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Apps de lista de tareas (to-do list)</div>
+                </li>
+                
+                <li class="option" data-option="40">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Redes sociales básicas</div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="question" style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #ecf0f1;">
+            <div class="instruction">
+                Seleccionar del 1 al 5, donde 1 es lo más importante y 5 es lo menos importante
+            </div>
+            
+            <div class="question-text">
+                ¿Qué herramientas son esenciales para empezar a desarrollar software?
+            </div>
+            
+            <ul class="options">
+                <li class="option" data-option="41">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Editor de código (como Visual Studio Code)</div>
+                </li>
+                
+                <li class="option" data-option="42">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Navegador web (Chrome, Firefox)</div>
+                </li>
+                
+                <li class="option" data-option="43">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Control de versiones (Git)</div>
+                </li>
+                
+                <li class="option" data-option="44">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Terminal o línea de comandos</div>
+                </li>
+                
+                <li class="option" data-option="45">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Herramientas de diseño (Figma, Canva)</div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="question" style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #ecf0f1;">
+            <div class="instruction">
+                Seleccionar del 1 al 5, donde 1 es lo más importante y 5 es lo menos importante
+            </div>
+            
+            <div class="question-text">
+                ¿Qué área del desarrollo de software te interesa más para tu futuro profesional?
+            </div>
+            
+            <ul class="options">
+                <li class="option" data-option="46">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Desarrollo de páginas web (frontend)</div>
+                </li>
+                
+                <li class="option" data-option="47">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Desarrollo de servidores y bases de datos (backend)</div>
+                </li>
+                
+                <li class="option" data-option="48">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Aplicaciones móviles (Android, iOS)</div>
+                </li>
+                
+                <li class="option" data-option="49">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Inteligencia artificial y machine learning</div>
+                </li>
+                
+                <li class="option" data-option="50">
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="1">1</button>
+                        <button class="priority-btn" data-priority="2">2</button>
+                        <button class="priority-btn" data-priority="3">3</button>
+                        <button class="priority-btn" data-priority="4">4</button>
+                        <button class="priority-btn" data-priority="5">5</button>
+                    </div>
+                    <div class="option-text">Ciberseguridad y protección de datos</div>
+                </li>
+            </ul>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <button class="submit-btn" id="submitBtn">Verificar Respuestas</button>
+        </div>
+        
+        <div class="navigation">
+            <a href="pagina3.html" class="nav-btn prev">← Anterior</a>
+            <div class="page-info">Página 4 de 4</div>
+            <div></div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 40px;">
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        // Guardar respuestas de esta página
+        let selectedPriorities = {};
+        
+        // Respuestas correctas según el orden esperado
+        const correctAnswers = {
+            // Pregunta 6 - Habilidades para empezar a programar (orden de importancia)
+            "26": "1", // Saber resolver problemas lógicos (fundamental)
+            "28": "2", // Tener buena paciencia y perseverancia (mentalidad)
+            "27": "3", // Conocer al menos un lenguaje de programación (práctica)
+            "29": "4", // Saber buscar información en internet (autonomía)
+            "30": "5", // Trabajar bien en equipo (colaboración)
+            
+            // Pregunta 7 - Maneras de aprender a programar (orden de efectividad)
+            "33": "1", // Hacer proyectos pequeños y personales (práctica real)
+            "31": "2", // Practicar con ejercicios sencillos todos los días (consistencia)
+            "32": "3", // Ver tutoriales en video y seguirlos paso a paso (guiado)
+            "35": "4", // Unirse a comunidades de programadores (apoyo)
+            "34": "5", // Leer libros y documentación oficial (teoría)
+            
+            // Pregunta 8 - Aplicaciones fáciles para principiantes (orden de dificultad)
+            "36": "1", // Páginas web informativas (blog, portafolio) - más fácil
+            "37": "2", // Calculadoras y herramientas simples - muy práctico
+            "39": "3", // Apps de lista de tareas (to-do list) - intermedio
+            "38": "4", // Juegos sencillos (ahorcado, tres en raya) - divertido
+            "40": "5", // Redes sociales básicas - más complejo
+            
+            // Pregunta 9 - Herramientas esenciales (orden de importancia)
+            "41": "1", // Editor de código (como Visual Studio Code) - básico
+            "42": "2", // Navegador web (Chrome, Firefox) - indispensable
+            "43": "3", // Control de versiones (Git) - profesional
+            "44": "4", // Terminal o línea de comandos - avanzado
+            "45": "5", // Herramientas de diseño (Figma, Canva) - complementario
+            
+            // Pregunta 10 - Áreas de desarrollo (orden de demanda y accesibilidad)
+            "46": "1", // Desarrollo de páginas web (frontend) - más demandado
+            "47": "2", // Desarrollo de servidores y bases de datos (backend) - fundamental
+            "48": "3", // Aplicaciones móviles (Android, iOS) - popular
+            "49": "4", // Inteligencia artificial y machine learning - futuro
+            "50": "5"  // Ciberseguridad y protección de datos - especializado
+        };
+        
+        // Cargar respuestas guardadas si existen
+        window.onload = function() {
+            const saved = localStorage.getItem('prueba_sena_pagina4');
+            if (saved) {
+                selectedPriorities = JSON.parse(saved);
+                // Restaurar selecciones visuales
+                Object.keys(selectedPriorities).forEach(optionId => {
+                    const option = document.querySelector(`.option[data-option="${optionId}"]`);
+                    const priority = selectedPriorities[optionId];
+                    if (option && priority) {
+                        const btn = option.querySelector(`.priority-btn[data-priority="${priority}"]`);
+                        if (btn) {
+                            btn.click();
+                        }
+                    }
+                });
+            }
+        };
+        
+        // Manejar clic en los botones de prioridad
+        document.querySelectorAll('.priority-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                const option = this.closest('.option');
+                const optionId = option.dataset.option;
+                const priority = this.dataset.priority;
+                
+                // Limpiar selección anterior de esta opción
+                option.querySelectorAll('.priority-btn').forEach(b => b.classList.remove('selected'));
+                
+                // Marcar este botón como seleccionado
+                this.classList.add('selected');
+                
+                // Guardar la selección
+                selectedPriorities[optionId] = priority;
+                
+                // Marcar la opción como seleccionada
+                option.classList.add('selected');
+                
+                // Guardar en localStorage
+                localStorage.setItem('prueba_sena_pagina4', JSON.stringify(selectedPriorities));
+            });
+        });
+        
+        // Manejar clic en la opción (alternativa)
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const firstBtn = this.querySelector('.priority-btn[data-priority="1"]');
+                if (firstBtn && !this.querySelector('.priority-btn.selected')) {
+                    firstBtn.click();
+                }
+            });
+        });
+        
+        // Función para obtener todas las respuestas de todas las páginas
+        function getAllAnswers() {
+            const allAnswers = {};
+            
+            // Obtener respuestas de cada página
+            const page1 = localStorage.getItem('prueba_sena_pagina1');
+            const page2 = localStorage.getItem('prueba_sena_pagina2');
+            const page3 = localStorage.getItem('prueba_sena_pagina3');
+            const page4 = localStorage.getItem('prueba_sena_pagina4');
+            
+            if (page1) {
+                Object.assign(allAnswers, JSON.parse(page1));
+            }
+            if (page2) {
+                Object.assign(allAnswers, JSON.parse(page2));
+            }
+            if (page3) {
+                Object.assign(allAnswers, JSON.parse(page3));
+            }
+            if (page4) {
+                Object.assign(allAnswers, JSON.parse(page4));
+            }
+            
+            return allAnswers;
+        }
+        
+        // Manejar verificación
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const resultDiv = document.getElementById('result');
+            const allAnswers = getAllAnswers();
+            
+            // Mostrar resultados por separado para cada pregunta
+            let results = '<h3>Verificación de respuestas:</h3>';
+            
+            // Preguntas 6-10 (Desarrollo de Sistemas para principiantes)
+            const systemQuestions = [
+                { number: 6, title: "Habilidades para Empezar", options: ['26', '27', '28', '29', '30'] },
+                { number: 7, title: "Maneras de Aprender", options: ['31', '32', '33', '34', '35'] },
+                { number: 8, title: "Aplicaciones Fáciles", options: ['36', '37', '38', '39', '40'] },
+                { number: 9, title: "Herramientas Esenciales", options: ['41', '42', '43', '44', '45'] },
+                { number: 10, title: "Áreas de Desarrollo", options: ['46', '47', '48', '49', '50'] }
+            ];
+            
+            let totalSystemCorrect = 0;
+            let totalSystemIncorrect = 0;
+            
+            systemQuestions.forEach(question => {
+                results += `<h4>Pregunta ${question.number}: ${question.title}</h4><ul>`;
+                let correctCount = 0;
+                let incorrectCount = 0;
+                
+                const sortedOptions = question.options
+                    .sort((a, b) => {
+                        const priorityA = allAnswers[a] || 999;
+                        const priorityB = allAnswers[b] || 999;
+                        return parseInt(priorityA) - parseInt(priorityB);
+                    });
+                
+                sortedOptions.forEach(optionId => {
+                    const option = document.querySelector(`.option[data-option="${optionId}"]`);
+                    const text = option.querySelector('.option-text').textContent;
+                    const priority = allAnswers[optionId];
+                    const correctPriority = correctAnswers[optionId];
+                    
+                    if (!priority) {
+                        incorrectCount++;
+                        results += `<li><span class="incorrect-answer">Sin respuesta.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
+                    } else {
+                        const isCorrect = priority === correctPriority;
+                        if (isCorrect) {
+                            correctCount++;
+                            results += `<li><span class="correct-answer">${priority}.</span> ${text} ✓</li>`;
+                        } else {
+                            incorrectCount++;
+                            results += `<li><span class="incorrect-answer">${priority}.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
+                        }
+                    }
+                });
+                
+                results += '</ul>';
+                results += `<p><strong>Resumen Pregunta ${question.number}:</strong> ${correctCount} correctas, ${incorrectCount} incorrectas</p>`;
+                
+                totalSystemCorrect += correctCount;
+                totalSystemIncorrect += incorrectCount;
+            });
+            
+            // Resumen general incluyendo todas las preguntas
+            const totalCorrect = totalSystemCorrect;
+            const totalIncorrect = totalSystemIncorrect;
+            const totalQuestions = 25; // 5 preguntas de sistemas x 5 opciones
+            const percentage = Math.round((totalCorrect / totalQuestions) * 100);
+            
+            results += `<h4>Resumen General - Desarrollo de Sistemas:</h4>`;
+            results += `<p><strong>${totalCorrect} respuestas correctas</strong> y <strong>${totalIncorrect} respuestas incorrectas</strong> de ${totalQuestions} totales (${percentage}%)</p>`;
+            results += `<p>Pregunta 6 (Habilidades): ${systemQuestions[0].options.filter(id => allAnswers[id] === correctAnswers[id]).length}/5 correctas</p>`;
+            results += `<p>Pregunta 7 (Aprendizaje): ${systemQuestions[1].options.filter(id => allAnswers[id] === correctAnswers[id]).length}/5 correctas</p>`;
+            results += `<p>Pregunta 8 (Aplicaciones): ${systemQuestions[2].options.filter(id => allAnswers[id] === correctAnswers[id]).length}/5 correctas</p>`;
+            results += `<p>Pregunta 9 (Herramientas): ${systemQuestions[3].options.filter(id => allAnswers[id] === correctAnswers[id]).length}/5 correctas</p>`;
+            results += `<p>Pregunta 10 (Áreas): ${systemQuestions[4].options.filter(id => allAnswers[id] === correctAnswers[id]).length}/5 correctas</p>`;
+            
+            if (percentage >= 90) {
+                results += '<p class="correct-answer">¡Excelente! Tienes una excelente comprensión de los fundamentos del desarrollo de software.</p>';
+                resultDiv.className = 'result success';
+            } else if (percentage >= 70) {
+                results += '<p class="correct-answer">¡Buen trabajo! Tienes buenos conocimientos básicos para empezar en desarrollo de sistemas.</p>';
+                resultDiv.className = 'result warning';
+            } else {
+                results += '<p class="incorrect-answer">Sigue aprendiendo. El desarrollo de software es un camino emocionante que requiere práctica constante.</p>';
+                resultDiv.className = 'result warning';
+            }
+            
+            resultDiv.innerHTML = results;
+            resultDiv.style.display = 'block';
+            
+            // Cambiar texto del botón a "Verificado"
+            this.textContent = 'Verificado';
+        });
+    </script>
+</body>
+</html>

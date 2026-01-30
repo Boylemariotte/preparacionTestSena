@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba SENA - Página 4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .question {
+            margin-bottom: 30px;
+        }
+        .question-text {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #34495e;
+            line-height: 1.5;
+        }
+        .instruction {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        .spatial-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 0;
+        }
+        .model-display {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .model-display h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .model-pattern {
+            display: inline-block;
+            background-color: white;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+        }
+        .square {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #2c3e50;
+            background-color: white;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .red-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #e74c3c;
+            border-radius: 50%;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .spatial-option {
+            background-color: white;
+            border: 3px solid #ecf0f1;
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .spatial-option:hover {
+            border-color: #3498db;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .spatial-option.selected {
+            border-color: #27ae60;
+            background-color: #e8f8f5;
+        }
+        .option-label {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 15px;
+        }
+        .cube-display {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-20deg) rotateY(30deg);
+        }
+        .cube-face {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 2px solid #2c3e50;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cube-face.front {
+            transform: translateZ(40px);
+        }
+        .cube-face.right {
+            transform: rotateY(90deg) translateZ(40px);
+        }
+        .cube-face.top {
+            transform: rotateX(90deg) translateZ(40px);
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+        }
+        .page-info {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .nav-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .nav-btn.prev {
+            background-color: #95a5a6;
+            color: white;
+        }
+        .nav-btn.next {
+            background-color: #3498db;
+            color: white;
+        }
+        .nav-btn:hover {
+            opacity: 0.8;
+        }
+        .submit-btn {
+            background-color: #27ae60;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        .submit-btn:hover {
+            background-color: #219a52;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .result.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .result.warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .incorrect-answer {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prueba SENA - Página 4</h1>
+        
+        <div class="question">
+            <div class="instruction">
+                Pregunta de razonamiento espacial - Seleccione la respuesta correcta
+            </div>
+            
+            <div class="question-text">
+                Este ejercicio presenta un modelo o patrón, que es el desarrollo en superficie. A continuación aparecen 4 figuras que se designan con las letras A, B, C y D. Solo una, se ha formado doblando el modelo, identifíquela:
+            </div>
+            
+            <div class="spatial-container">
+                <div class="model-display">
+                    <h3>Modelo de desarrollo en superficie:</h3>
+                    <div class="model-pattern">
+                        <!-- Fila superior con 3 cuadrados -->
+                        <div class="square" style="top: 0; left: 0;">
+                            <div class="red-dot"></div>
+                        </div>
+                        <div class="square" style="top: 0; left: 44px;">
+                            <div class="red-dot"></div>
+                        </div>
+                        <div class="square" style="top: 0; left: 88px;">
+                            <div class="red-dot"></div>
+                        </div>
+                        <!-- Fila inferior con 3 cuadrados hacia abajo desde el centro -->
+                        <div class="square" style="top: 44px; left: 44px;">
+                            <div class="red-dot"></div>
+                        </div>
+                        <div class="square" style="top: 88px; left: 44px;">
+                            <div class="red-dot"></div>
+                        </div>
+                        <div class="square" style="top: 132px; left: 44px;">
+                            <div class="red-dot"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="options-grid">
+                    <div class="spatial-option" data-option="A">
+                        <div class="cube-display">
+                            <div class="cube-face front">
+                                <div class="red-dot"></div>
+                            </div>
+                            <div class="cube-face right">
+                                <div class="red-dot"></div>
+                            </div>
+                            <div class="cube-face top">
+                                <div class="red-dot"></div>
+                            </div>
+                        </div>
+                        <div class="option-label">A</div>
+                    </div>
+                    
+                    <div class="spatial-option" data-option="B">
+                        <div class="cube-display">
+                            <div class="cube-face front">
+                                <div class="red-dot"></div>
+                            </div>
+                            <div class="cube-face right"></div>
+                            <div class="cube-face top">
+                                <div class="red-dot"></div>
+                            </div>
+                        </div>
+                        <div class="option-label">B</div>
+                    </div>
+                    
+                    <div class="spatial-option" data-option="C">
+                        <div class="cube-display">
+                            <div class="cube-face front">
+                                <div class="red-dot"></div>
+                            </div>
+                            <div class="cube-face right">
+                                <div class="red-dot"></div>
+                            </div>
+                            <div class="cube-face top"></div>
+                        </div>
+                        <div class="option-label">C</div>
+                    </div>
+                    
+                    <div class="spatial-option" data-option="D">
+                        <div class="cube-display">
+                            <div class="cube-face front">
+                                <div class="red-dot"></div>
+                            </div>
+                            <div class="cube-face right"></div>
+                            <div class="cube-face top"></div>
+                        </div>
+                        <div class="option-label">D</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="submit-btn" id="submitBtn">Verificar Respuesta</button>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="pagina3.html" class="nav-btn prev">← Anterior</a>
+            <div class="page-info">Página 4 de 4</div>
+            <div></div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 40px;">
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        // Guardar respuesta de esta página
+        let selectedAnswer = null;
+        
+        // Respuesta correcta (basado en el análisis del patrón)
+        const correctAnswer = "A";
+        
+        // Cargar respuesta guardada si existe
+        window.onload = function() {
+            const saved = localStorage.getItem('prueba_sena_pagina4');
+            if (saved) {
+                selectedAnswer = saved;
+                // Restaurar selección visual
+                const option = document.querySelector(`.spatial-option[data-option="${saved}"]`);
+                if (option) {
+                    option.classList.add('selected');
+                }
+            }
+        };
+        
+        // Manejar clic en las opciones espaciales
+        document.querySelectorAll('.spatial-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Limpiar selección anterior
+                document.querySelectorAll('.spatial-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Marcar esta opción como seleccionada
+                this.classList.add('selected');
+                selectedAnswer = this.dataset.option;
+                
+                // Guardar en localStorage
+                localStorage.setItem('prueba_sena_pagina4', selectedAnswer);
+            });
+        });
+        
+        // Manejar verificación
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const resultDiv = document.getElementById('result');
+            
+            let results = '<h3>Verificación de respuesta:</h3>';
+            results += '<h4>Pregunta 6: Razonamiento Espacial</h4>';
+            
+            if (!selectedAnswer) {
+                results += '<p class="incorrect-answer">No has seleccionado ninguna respuesta.</p>';
+                results += '<p><strong>Respuesta correcta: A</strong></p>';
+            } else {
+                const isCorrect = selectedAnswer === correctAnswer;
+                
+                if (isCorrect) {
+                    results += `<p class="correct-answer">✓ ¡Correcto! Has seleccionado la opción ${selectedAnswer}.</p>`;
+                    results += '<p>El modelo mostrado forma un cubo con puntos en las caras frontal, derecha y superior, lo que corresponde a la opción A.</p>';
+                } else {
+                    results += `<p class="incorrect-answer">✗ Incorrecto. Has seleccionado la opción ${selectedAnswer}.</p>`;
+                    results += '<p><strong>Respuesta correcta: A</strong></p>';
+                    results += '<p>El modelo mostrado forma un cubo con puntos en las caras frontal, derecha y superior, lo que corresponde a la opción A.</p>';
+                }
+            }
+            
+            results += '<h4>Análisis del patrón:</h4>';
+            results += '<ul>';
+            results += '<li>El modelo tiene 6 cuadrados que forman una cruz</li>';
+            results += '<li>Los puntos rojos indican qué caras tendrán marcas en el cubo final</li>';
+            results += '<li>Al doblar, los 3 cuadrados superiores forman las caras frontal, superior y trasera</li>';
+            results += '<li>Los 3 cuadrados inferiores forman las caras inferior, derecha e izquierda</li>';
+            results += '<li>La opción A es la única que muestra puntos en las 3 caras visibles correctas</li>';
+            results += '</ul>';
+            
+            resultDiv.innerHTML = results;
+            resultDiv.style.display = 'block';
+            
+            // Cambiar texto del botón a "Verificado"
+            this.textContent = 'Verificado';
+        });
+    </script>
+</body>
+</html>
