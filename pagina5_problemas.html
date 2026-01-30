@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba SENA - Página 5</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 100%;
+            margin: 0;
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            .container {
+                padding: 30px;
+                max-width: 800px;
+            }
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+        }
+        .question {
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+        }
+        @media (min-width: 768px) {
+            .question {
+                margin-bottom: 30px;
+                padding: 25px;
+            }
+        }
+        .question-number {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .question-text {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #34495e;
+            line-height: 1.5;
+        }
+        @media (min-width: 768px) {
+            .question-text {
+                font-size: 18px;
+            }
+        }
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+        .option {
+            margin-bottom: 12px;
+            padding: 15px;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            background-color: white;
+        }
+        @media (min-width: 768px) {
+            .option {
+                margin-bottom: 15px;
+                padding: 18px;
+            }
+        }
+        .option:hover {
+            border-color: #e74c3c;
+            background-color: #fdf2f2;
+            transform: translateX(5px);
+        }
+        .option.selected {
+            border-color: #e74c3c;
+            background-color: #fdf2f2;
+            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.2);
+        }
+        .option-letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        @media (min-width: 768px) {
+            .option-letter {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+                margin-right: 20px;
+            }
+        }
+        .option-text {
+            flex: 1;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+        @media (min-width: 768px) {
+            .option-text {
+                line-height: 1.5;
+                font-size: 16px;
+            }
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        @media (min-width: 768px) {
+            .navigation {
+                margin-top: 30px;
+                padding: 20px;
+                flex-wrap: nowrap;
+                gap: 0;
+            }
+        }
+        .page-info {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 14px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (min-width: 768px) {
+            .page-info {
+                font-size: 16px;
+            }
+        }
+        .nav-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            min-width: 80px;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 16px;
+                min-width: 100px;
+            }
+        }
+        .nav-btn.prev {
+            background-color: #95a5a6;
+            color: white;
+        }
+        .nav-btn:hover {
+            opacity: 0.8;
+        }
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+            border-radius: 10px;
+        }
+        .footer-btn {
+            background-color: #27ae60;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .footer-btn:hover {
+            background-color: #229954;
+            transform: scale(1.05);
+        }
+        @media (min-width: 768px) {
+            .footer {
+                padding: 25px;
+                margin-top: 50px;
+            }
+            .footer-btn {
+                padding: 14px 28px;
+                font-size: 18px;
+            }
+        }
+        .submit-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 40px auto;
+            display: block;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+        @media (min-width: 768px) {
+            .submit-btn {
+                padding: 18px 50px;
+                font-size: 20px;
+                margin: 50px auto;
+            }
+        }
+        .submit-btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+        .submit-btn:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+        .result.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .result.warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        .correct-answer {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .incorrect-answer {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prueba SENA - Página 5</h1>
+        <p style="text-align: center; color: #7f8c8d; margin-bottom: 30px; font-size: 16px;">
+            Resolución de Problemas Cuantitativos - Seleccione la respuesta correcta
+        </p>
+        
+        <div class="question">
+            <div class="question-number">Pregunta 1</div>
+            <div class="question-text">
+                Un desarrollador necesita optimizar un algoritmo que actualmente procesa 1,000 datos en 10 segundos. Si se implementa una mejora que aumenta la eficiencia en un 40%, ¿cuánto tiempo tomará procesar los mismos 1,000 datos?
+            </div>
+            <ul class="options">
+                <li class="option" data-question="1" data-answer="A">
+                    <span class="option-letter">A</span>
+                    <span class="option-text">4 segundos</span>
+                </li>
+                <li class="option" data-question="1" data-answer="B">
+                    <span class="option-letter">B</span>
+                    <span class="option-text">6 segundos</span>
+                </li>
+                <li class="option" data-question="1" data-answer="C">
+                    <span class="option-letter">C</span>
+                    <span class="option-text">7 segundos</span>
+                </li>
+                <li class="option" data-question="1" data-answer="D">
+                    <span class="option-letter">D</span>
+                    <span class="option-text">8 segundos</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="question">
+            <div class="question-number">Pregunta 2</div>
+            <div class="question-text">
+                Una base de datos contiene 50,000 registros. Si se realiza una consulta que devuelve el 15% de los registros y cada registro ocupa 2 KB, ¿cuál es el tamaño total de los datos devueltos?
+            </div>
+            <ul class="options">
+                <li class="option" data-question="2" data-answer="A">
+                    <span class="option-letter">A</span>
+                    <span class="option-text">15 MB</span>
+                </li>
+                <li class="option" data-question="2" data-answer="B">
+                    <span class="option-letter">B</span>
+                    <span class="option-text">150 KB</span>
+                </li>
+                <li class="option" data-question="2" data-answer="C">
+                    <span class="option-letter">C</span>
+                    <span class="option-text">1.5 MB</span>
+                </li>
+                <li class="option" data-question="2" data-answer="D">
+                    <span class="option-letter">D</span>
+                    <span class="option-text">15,000 KB</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="question">
+            <div class="question-number">Pregunta 3</div>
+            <div class="question-text">
+                Un servidor web procesa 500 solicitudes por minuto. Si se necesita procesar 12,000 solicitudes, ¿cuántos minutos adicionales se necesitan si el servidor ya ha estado funcionando durante 15 minutos?
+            </div>
+            <ul class="options">
+                <li class="option" data-question="3" data-answer="A">
+                    <span class="option-letter">A</span>
+                    <span class="option-text">9 minutos</span>
+                </li>
+                <li class="option" data-question="3" data-answer="B">
+                    <span class="option-letter">B</span>
+                    <span class="option-text">15 minutos</span>
+                </li>
+                <li class="option" data-question="3" data-answer="C">
+                    <span class="option-letter">C</span>
+                    <span class="option-text">24 minutos</span>
+                </li>
+                <li class="option" data-question="3" data-answer="D">
+                    <span class="option-letter">D</span>
+                    <span class="option-text">39 minutos</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="question">
+            <div class="question-number">Pregunta 4</div>
+            <div class="question-text">
+                En un proyecto de software, 3 desarrolladores pueden completar una tarea en 12 días. Si se añaden 2 desarrolladores más con la misma productividad, ¿cuántos días tomará completar la misma tarea?
+            </div>
+            <ul class="options">
+                <li class="option" data-question="4" data-answer="A">
+                    <span class="option-letter">A</span>
+                    <span class="option-text">7.2 días</span>
+                </li>
+                <li class="option" data-question="4" data-answer="B">
+                    <span class="option-letter">B</span>
+                    <span class="option-text">8 días</span>
+                </li>
+                <li class="option" data-question="4" data-answer="C">
+                    <span class="option-letter">C</span>
+                    <span class="option-text">10 días</span>
+                </li>
+                <li class="option" data-question="4" data-answer="D">
+                    <span class="option-letter">D</span>
+                    <span class="option-text">12 días</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="question">
+            <div class="question-number">Pregunta 5</div>
+            <div class="question-text">
+                Una aplicación móvil consume 50 MB de datos diarios. Si el usuario tiene un plan de 2 GB mensual y usa la aplicación durante 25 días, ¿cuántos datos le quedan disponibles?
+            </div>
+            <ul class="options">
+                <li class="option" data-question="5" data-answer="A">
+                    <span class="option-letter">A</span>
+                    <span class="option-text">750 MB</span>
+                </li>
+                <li class="option" data-question="5" data-answer="B">
+                    <span class="option-letter">B</span>
+                    <span class="option-text">800 MB</span>
+                </li>
+                <li class="option" data-question="5" data-answer="C">
+                    <span class="option-letter">C</span>
+                    <span class="option-text">1.25 GB</span>
+                </li>
+                <li class="option" data-question="5" data-answer="D">
+                    <span class="option-letter">D</span>
+                    <span class="option-text">1.5 GB</span>
+                </li>
+            </ul>
+        </div>
+        
+        <button class="submit-btn" id="submitBtn">Verificar Todas las Respuestas</button>
+        
+        <div class="navigation">
+            <a href="pagina4_sistemas.html" class="nav-btn prev">← Anterior</a>
+            <div class="page-info">Página 5 de 5</div>
+            <div></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>🎯 Prueba SENA - Evaluación de Competencias</p>
+        <a href="index.html" class="footer-btn">🏠 Volver al Inicio</a>
+    </div>
+
+    <div class="container" style="margin-top: 40px;">
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        // Guardar respuestas de esta página
+        let selectedAnswers = {};
+        
+        // Respuestas correctas
+        const correctAnswers = {
+            "1": "B",  // 10 * (1 - 0.40) = 6 segundos
+            "2": "A",  // 50,000 * 0.15 * 2 KB = 15,000 KB = 15 MB
+            "3": "A",  // 12,000/500 = 24 minutos total, 24 - 15 = 9 minutos adicionales
+            "4": "A",  // (3 * 12) / 5 = 7.2 días
+            "5": "A"   // 2 GB - (50 * 25) = 2048 - 1250 = 798 MB ≈ 750 MB (redondeado)
+        };
+        
+        // Cargar respuestas guardadas si existen
+        window.onload = function() {
+            const saved = localStorage.getItem('prueba_sena_pagina5');
+            if (saved) {
+                selectedAnswers = JSON.parse(saved);
+                // Restaurar selecciones visuales
+                Object.keys(selectedAnswers).forEach(questionId => {
+                    const option = document.querySelector(`.option[data-question="${questionId}"][data-answer="${selectedAnswers[questionId]}"]`);
+                    if (option) {
+                        option.classList.add('selected');
+                    }
+                });
+            }
+        };
+        
+        // Manejar clic en las opciones
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const questionId = this.dataset.question;
+                const answer = this.dataset.answer;
+                
+                // Limpiar selección anterior de esta pregunta
+                document.querySelectorAll(`.option[data-question="${questionId}"]`).forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Marcar esta opción como seleccionada
+                this.classList.add('selected');
+                
+                // Guardar la respuesta
+                selectedAnswers[questionId] = answer;
+                
+                // Guardar en localStorage
+                localStorage.setItem('prueba_sena_pagina5', JSON.stringify(selectedAnswers));
+            });
+        });
+        
+        // Manejar verificación final
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const resultDiv = document.getElementById('result');
+            
+            let results = '<h3>Resultados - Problemas Cuantitativos:</h3>';
+            let correctCount = 0;
+            let incorrectCount = 0;
+            
+            for (let i = 1; i <= 5; i++) {
+                const userAnswer = selectedAnswers[i];
+                const correctAnswer = correctAnswers[i];
+                
+                results += `<h4>Pregunta ${i}:</h4>`;
+                results += '<ul>';
+                
+                document.querySelectorAll(`.option[data-question="${i}"]`).forEach(opt => {
+                    const answer = opt.dataset.answer;
+                    const text = opt.querySelector('.option-text').textContent;
+                    
+                    if (answer === correctAnswer) {
+                        if (userAnswer === answer) {
+                            results += `<li><span class="correct-answer">${answer}.</span> ${text} ✓</li>`;
+                            correctCount++;
+                        } else {
+                            results += `<li><span class="correct-answer">${answer}.</span> ${text} (Correcta)</li>`;
+                        }
+                    } else if (userAnswer === answer) {
+                        results += `<li><span class="incorrect-answer">${answer}.</span> ${text} ✗</li>`;
+                        incorrectCount++;
+                    }
+                });
+                
+                results += '</ul>';
+            }
+            
+            results += `<div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px;">`;
+            results += `<h4>Resumen Final:</h4>`;
+            results += `<p><strong>Respuestas Correctas:</strong> ${correctCount}/5</p>`;
+            results += `<p><strong>Respuestas Incorrectas:</strong> ${incorrectCount}/5</p>`;
+            results += `<p><strong>Porcentaje de Aciertos:</strong> ${((correctCount/5) * 100).toFixed(1)}%</p>`;
+            
+            if (correctCount >= 4) {
+                results += `<p style="color: #27ae60; font-weight: bold;">¡Excelente desempeño en resolución de problemas cuantitativos!</p>`;
+            } else if (correctCount >= 3) {
+                results += `<p style="color: #f39c12; font-weight: bold;">Buen desempeño, sigue practicando.</p>`;
+            } else {
+                results += `<p style="color: #e74c3c; font-weight: bold;">Necesitas practicar más resolución de problemas cuantitativos.</p>`;
+            }
+            results += `</div>`;
+            
+            resultDiv.innerHTML = results;
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result success';
+            
+            // Scroll hacia los resultados
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
