@@ -1,0 +1,13 @@
+{
+  "name": "prueba-sena",
+  "version": "1.0.0",
+  "description": "Prueba SENA - Evaluación de competencias para desarrollador de sistemas",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8080",
+    "build": "echo 'No build step required for static site'"
+  },
+  "keywords": ["sena", "prueba", "evaluacion", "desarrollo-sistemas"],
+  "author": "SENA",
+  "license": "MIT"
+}
