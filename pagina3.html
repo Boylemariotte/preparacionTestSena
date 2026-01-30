@@ -222,6 +222,41 @@
         .nav-btn:hover {
             opacity: 0.8;
         }
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+            border-radius: 10px;
+        }
+        .footer-btn {
+            background-color: #27ae60;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .footer-btn:hover {
+            background-color: #229954;
+            transform: scale(1.05);
+        }
+        @media (min-width: 768px) {
+            .footer {
+                padding: 25px;
+                margin-top: 50px;
+            }
+            .footer-btn {
+                padding: 14px 28px;
+                font-size: 18px;
+            }
+        }
         .submit-btn {
             background-color: #27ae60;
             color: white;
@@ -339,8 +374,13 @@
         <div class="navigation">
             <a href="pagina2.html" class="nav-btn prev">← Anterior</a>
             <div class="page-info">Página 3 de 4</div>
-            <a href="index.html" class="nav-btn home">🏠 Inicio</a>
+            <a href="pagina4_sistemas.html" class="nav-btn next">Siguiente →</a>
         </div>
+    </div>
+
+    <div class="footer">
+        <p>� Prueba SENA - Evaluación de Competencias</p>
+        <a href="index.html" class="footer-btn">🏠 Volver al Inicio</a>
     </div>
 
     <div class="container" style="margin-top: 40px;">
