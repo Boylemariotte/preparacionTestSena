@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba SENA - Página 5</title>
+    <title>Prueba SENA - Página 6</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -40,12 +40,51 @@
                 margin-bottom: 30px;
             }
         }
+        .intro-text {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        @media (min-width: 768px) {
+            .intro-text {
+                font-size: 18px;
+                margin-bottom: 40px;
+            }
+        }
+        .reading-passage {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid #8e44ad;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        @media (min-width: 768px) {
+            .reading-passage {
+                padding: 30px;
+                font-size: 16px;
+                margin-bottom: 40px;
+            }
+        }
+        .reading-passage h3 {
+            color: #8e44ad;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        @media (min-width: 768px) {
+            .reading-passage h3 {
+                font-size: 20px;
+            }
+        }
         .question {
             margin-bottom: 25px;
             padding: 20px;
-            background-color: #f8f9fa;
+            background-color: #fef9ff;
             border-radius: 8px;
-            border-left: 4px solid #e74c3c;
+            border-left: 4px solid #8e44ad;
         }
         @media (min-width: 768px) {
             .question {
@@ -55,7 +94,7 @@
         }
         .question-number {
             font-weight: bold;
-            color: #e74c3c;
+            color: #8e44ad;
             font-size: 18px;
             margin-bottom: 15px;
         }
@@ -93,14 +132,14 @@
             }
         }
         .option:hover {
-            border-color: #e74c3c;
-            background-color: #fdf2f2;
+            border-color: #8e44ad;
+            background-color: #f4ecf7;
             transform: translateX(5px);
         }
         .option.selected {
-            border-color: #e74c3c;
-            background-color: #fdf2f2;
-            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.2);
+            border-color: #8e44ad;
+            background-color: #f4ecf7;
+            box-shadow: 0 2px 8px rgba(142, 68, 173, 0.2);
         }
         .option-letter {
             display: inline-flex;
@@ -108,7 +147,7 @@
             justify-content: center;
             width: 30px;
             height: 30px;
-            background-color: #e74c3c;
+            background-color: #8e44ad;
             color: white;
             border-radius: 50%;
             font-weight: bold;
@@ -231,7 +270,7 @@
             }
         }
         .submit-btn {
-            background-color: #e74c3c;
+            background-color: #8e44ad;
             color: white;
             padding: 15px 40px;
             border: none;
@@ -242,7 +281,7 @@
             transition: all 0.3s ease;
             margin: 40px auto;
             display: block;
-            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+            box-shadow: 0 4px 15px rgba(142, 68, 173, 0.3);
         }
         @media (min-width: 768px) {
             .submit-btn {
@@ -252,9 +291,9 @@
             }
         }
         .submit-btn:hover {
-            background-color: #c0392b;
+            background-color: #7d3c98;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+            box-shadow: 0 6px 20px rgba(142, 68, 173, 0.4);
         }
         .submit-btn:disabled {
             background-color: #bdc3c7;
@@ -290,32 +329,48 @@
 </head>
 <body>
     <div class="container">
-        <h1>Prueba SENA - Página 5</h1>
-        <p style="text-align: center; color: #7f8c8d; margin-bottom: 30px; font-size: 16px;">
-            Resolución de Problemas Cuantitativos - Seleccione la respuesta correcta
+        <h1>Prueba SENA - Página 6</h1>
+        <p class="intro-text">
+            📚 Comprensión Lectora - Lea atentamente el siguiente texto y responda las preguntas seleccionando la opción correcta
         </p>
+        
+        <div class="reading-passage">
+            <h3>La Transformación Digital en el Desarrollo de Software</h3>
+            <p>
+                La transformación digital ha revolucionado completamente la forma en que las empresas desarrollan, implementan y mantienen software. En la última década, hemos pasado de modelos tradicionales de desarrollo en cascada a metodologías ágiles que permiten una mayor flexibilidad y adaptabilidad. Este cambio no solo ha afectado los procesos técnicos, sino también la cultura organizacional y las habilidades requeridas por los profesionales del sector.
+            </p>
+            <p>
+                Las metodologías ágiles, como Scrum y Kanban, han demostrado ser particularmente efectivas para proyectos complejos que requieren iteraciones rápidas y retroalimentación constante. A diferencia del modelo en cascada, donde cada fase debe completarse antes de pasar a la siguiente, los enfoques ágiles permiten equipos multidisciplinarios trabajar en paralelo, entregando valor incrementalmente. Esto ha resultado en una reducción significativa del tiempo de comercialización y una mayor satisfacción del cliente.
+            </p>
+            <p>
+                Sin embargo, la adopción de estas nuevas metodologías no está exenta de desafíos. Muchas organizaciones luchan con la resistencia al cambio por parte de empleados acostumbrados a procesos tradicionales. Además, la implementación exitosa requiere una inversión considerable en capacitación y herramientas tecnológicas. Las empresas que logran superar estos obstáculos experimentan beneficios sustanciales, incluyendo mayor productividad, mejor calidad del software y una mayor capacidad para responder a los cambios del mercado.
+            </p>
+            <p>
+                El futuro del desarrollo de software parece orientarse hacia una combinación de inteligencia artificial, desarrollo low-code/no-code y automatización de procesos. Estas tecnologías prometen democratizar el desarrollo de software, permitiendo que personas sin conocimientos técnicos profundos puedan crear aplicaciones funcionales. Al mismo tiempo, los desarrolladores profesionales evolucionarán hacia roles más estratégicos, enfocándose en arquitectura compleja, seguridad y optimización de sistemas.
+            </p>
+        </div>
         
         <div class="question">
             <div class="question-number">Pregunta 1</div>
             <div class="question-text">
-                Un desarrollador necesita optimizar un algoritmo que actualmente procesa 1,000 datos en 10 segundos. Si se implementa una mejora que aumenta la eficiencia en un 40%, ¿cuánto tiempo tomará procesar los mismos 1,000 datos?
+                Según el texto, ¿cuál es la principal diferencia entre las metodologías ágiles y el modelo en cascada?
             </div>
             <ul class="options">
                 <li class="option" data-question="1" data-answer="A">
                     <span class="option-letter">A</span>
-                    <span class="option-text">4 segundos</span>
+                    <span class="option-text">Las metodologías ágiles permiten trabajar en paralelo y entregar valor incrementalmente, mientras que el modelo en cascada requiere completar cada fase antes de pasar a la siguiente</span>
                 </li>
                 <li class="option" data-question="1" data-answer="B">
                     <span class="option-letter">B</span>
-                    <span class="option-text">6 segundos</span>
+                    <span class="option-text">El modelo en cascada es más moderno y eficiente que las metodologías ágiles</span>
                 </li>
                 <li class="option" data-question="1" data-answer="C">
                     <span class="option-letter">C</span>
-                    <span class="option-text">7 segundos</span>
+                    <span class="option-text">Ambas metodologías son idénticas en su enfoque y resultados</span>
                 </li>
                 <li class="option" data-question="1" data-answer="D">
                     <span class="option-letter">D</span>
-                    <span class="option-text">8 segundos</span>
+                    <span class="option-text">Las metodologías ágiles solo se usan para proyectos pequeños y simples</span>
                 </li>
             </ul>
         </div>
@@ -323,24 +378,24 @@
         <div class="question">
             <div class="question-number">Pregunta 2</div>
             <div class="question-text">
-                Una base de datos contiene 50,000 registros. Si se realiza una consulta que devuelve el 15% de los registros y cada registro ocupa 2 KB, ¿cuál es el tamaño total de los datos devueltos?
+                ¿Qué desafíos menciona el texto sobre la adopción de metodologías ágiles en las organizaciones?
             </div>
             <ul class="options">
                 <li class="option" data-question="2" data-answer="A">
                     <span class="option-letter">A</span>
-                    <span class="option-text">15 MB</span>
+                    <span class="option-text">La resistencia al cambio por parte de empleados y la necesidad de inversión en capacitación y herramientas</span>
                 </li>
                 <li class="option" data-question="2" data-answer="B">
                     <span class="option-letter">B</span>
-                    <span class="option-text">150 KB</span>
+                    <span class="option-text">La falta de interés por parte de los clientes y el alto costo del software</span>
                 </li>
                 <li class="option" data-question="2" data-answer="C">
                     <span class="option-letter">C</span>
-                    <span class="option-text">1.5 MB</span>
+                    <span class="option-text">La complejidad técnica que hace imposible su implementación</span>
                 </li>
                 <li class="option" data-question="2" data-answer="D">
                     <span class="option-letter">D</span>
-                    <span class="option-text">15,000 KB</span>
+                    <span class="option-text">La obsolescencia rápida de las tecnologías ágiles</span>
                 </li>
             </ul>
         </div>
@@ -348,24 +403,24 @@
         <div class="question">
             <div class="question-number">Pregunta 3</div>
             <div class="question-text">
-                Un servidor web procesa 500 solicitudes por minuto. Si se necesita procesar 12,000 solicitudes, ¿cuántos minutos adicionales se necesitan si el servidor ya ha estado funcionando durante 15 minutos?
+                Según el texto, ¿qué tendencia caracteriza el futuro del desarrollo de software?
             </div>
             <ul class="options">
                 <li class="option" data-question="3" data-answer="A">
                     <span class="option-letter">A</span>
-                    <span class="option-text">9 minutos</span>
+                    <span class="option-text">Una combinación de inteligencia artificial, desarrollo low-code/no-code y automatización de procesos</span>
                 </li>
                 <li class="option" data-question="3" data-answer="B">
                     <span class="option-letter">B</span>
-                    <span class="option-text">15 minutos</span>
+                    <span class="option-text">El retorno exclusivo a metodologías tradicionales en cascada</span>
                 </li>
                 <li class="option" data-question="3" data-answer="C">
                     <span class="option-letter">C</span>
-                    <span class="option-text">24 minutos</span>
+                    <span class="option-text">La eliminación completa de los desarrolladores profesionales</span>
                 </li>
                 <li class="option" data-question="3" data-answer="D">
                     <span class="option-letter">D</span>
-                    <span class="option-text">39 minutos</span>
+                    <span class="option-text">La disminución del interés en el desarrollo de software</span>
                 </li>
             </ul>
         </div>
@@ -373,57 +428,34 @@
         <div class="question">
             <div class="question-number">Pregunta 4</div>
             <div class="question-text">
-                En un proyecto de software, 3 desarrolladores pueden completar una tarea en 12 días. Si se añaden 2 desarrolladores más con la misma productividad, ¿cuántos días tomará completar la misma tarea?
+                ¿Qué rol evolucionarán a tener los desarrolladores profesionales según el texto?
             </div>
             <ul class="options">
                 <li class="option" data-question="4" data-answer="A">
                     <span class="option-letter">A</span>
-                    <span class="option-text">7.2 días</span>
+                    <span class="option-text">Roles más estratégicos enfocados en arquitectura compleja, seguridad y optimización de sistemas</span>
                 </li>
                 <li class="option" data-question="4" data-answer="B">
                     <span class="option-letter">B</span>
-                    <span class="option-text">8 días</span>
+                    <span class="option-text">Únicamente tareas de programación básica y repetitiva</span>
                 </li>
                 <li class="option" data-question="4" data-answer="C">
                     <span class="option-letter">C</span>
-                    <span class="option-text">10 días</span>
+                    <span class="option-text">Dejarán de ser necesarios en el proceso de desarrollo</span>
                 </li>
                 <li class="option" data-question="4" data-answer="D">
                     <span class="option-letter">D</span>
-                    <span class="option-text">12 días</span>
+                    <span class="option-text">Se dedicarán exclusivamente a la venta de software</span>
                 </li>
             </ul>
         </div>
         
-        <div class="question">
-            <div class="question-number">Pregunta 5</div>
-            <div class="question-text">
-                Una aplicación móvil consume 50 MB de datos diarios. Si el usuario tiene un plan de 2 GB mensual y usa la aplicación durante 25 días, ¿cuántos datos le quedan disponibles?
-            </div>
-            <ul class="options">
-                <li class="option" data-question="5" data-answer="A">
-                    <span class="option-letter">A</span>
-                    <span class="option-text">750 MB</span>
-                </li>
-                <li class="option" data-question="5" data-answer="B">
-                    <span class="option-letter">B</span>
-                    <span class="option-text">800 MB</span>
-                </li>
-                <li class="option" data-question="5" data-answer="C">
-                    <span class="option-letter">C</span>
-                    <span class="option-text">1.25 GB</span>
-                </li>
-                <li class="option" data-question="5" data-answer="D">
-                    <span class="option-letter">D</span>
-                    <span class="option-text">1.5 GB</span>
-                </li>
-            </ul>
-        </div>
+        <button class="submit-btn" id="submitBtn">Verificar Todas las Respuestas</button>
         
         <div class="navigation">
-            <a href="pagina4_sistemas.html" class="nav-btn prev">← Anterior</a>
-            <div class="page-info">Página 5 de 6</div>
-            <a href="pagina6_lectura.html" class="nav-btn next">Siguiente →</a>
+            <a href="pagina5_problemas.html" class="nav-btn prev">← Anterior</a>
+            <div class="page-info">Página 6 de 6</div>
+            <div></div>
         </div>
     </div>
 
@@ -442,16 +474,15 @@
         
         // Respuestas correctas
         const correctAnswers = {
-            "1": "B",  // 10 * (1 - 0.40) = 6 segundos
-            "2": "A",  // 50,000 * 0.15 * 2 KB = 15,000 KB = 15 MB
-            "3": "A",  // 12,000/500 = 24 minutos total, 24 - 15 = 9 minutos adicionales
-            "4": "A",  // (3 * 12) / 5 = 7.2 días
-            "5": "A"   // 2 GB - (50 * 25) = 2048 - 1250 = 798 MB ≈ 750 MB (redondeado)
+            "1": "A",  // La diferencia principal es el trabajo en paralelo y entrega incremental vs. fases secuenciales
+            "2": "A",  // Resistencia al cambio y necesidad de inversión en capacitación y herramientas
+            "3": "A",  // Combinación de IA, low-code/no-code y automatización
+            "4": "A"   // Roles más estratégicos enfocados en arquitectura, seguridad y optimización
         };
         
         // Cargar respuestas guardadas si existen
         window.onload = function() {
-            const saved = localStorage.getItem('prueba_sena_pagina5');
+            const saved = localStorage.getItem('prueba_sena_pagina6');
             if (saved) {
                 selectedAnswers = JSON.parse(saved);
                 // Restaurar selecciones visuales
@@ -482,7 +513,7 @@
                 selectedAnswers[questionId] = answer;
                 
                 // Guardar en localStorage
-                localStorage.setItem('prueba_sena_pagina5', JSON.stringify(selectedAnswers));
+                localStorage.setItem('prueba_sena_pagina6', JSON.stringify(selectedAnswers));
             });
         });
         
@@ -490,11 +521,11 @@
         document.getElementById('submitBtn').addEventListener('click', function() {
             const resultDiv = document.getElementById('result');
             
-            let results = '<h3>Resultados - Problemas Cuantitativos:</h3>';
+            let results = '<h3>Resultados - Comprensión Lectora:</h3>';
             let correctCount = 0;
             let incorrectCount = 0;
             
-            for (let i = 1; i <= 5; i++) {
+            for (let i = 1; i <= 4; i++) {
                 const userAnswer = selectedAnswers[i];
                 const correctAnswer = correctAnswers[i];
                 
@@ -522,17 +553,19 @@
             }
             
             results += `<div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px;">`;
-            results += `<h4>Resumen Final:</h4>`;
-            results += `<p><strong>Respuestas Correctas:</strong> ${correctCount}/5</p>`;
-            results += `<p><strong>Respuestas Incorrectas:</strong> ${incorrectCount}/5</p>`;
-            results += `<p><strong>Porcentaje de Aciertos:</strong> ${((correctCount/5) * 100).toFixed(1)}%</p>`;
+            results += `<h4>Resumen Final - Comprensión Lectora:</h4>`;
+            results += `<p><strong>Respuestas Correctas:</strong> ${correctCount}/4</p>`;
+            results += `<p><strong>Respuestas Incorrectas:</strong> ${incorrectCount}/4</p>`;
+            results += `<p><strong>Porcentaje de Aciertos:</strong> ${((correctCount/4) * 100).toFixed(1)}%</p>`;
             
-            if (correctCount >= 4) {
-                results += `<p style="color: #27ae60; font-weight: bold;">¡Excelente desempeño en resolución de problemas cuantitativos!</p>`;
-            } else if (correctCount >= 3) {
-                results += `<p style="color: #f39c12; font-weight: bold;">Buen desempeño, sigue practicando.</p>`;
+            if (correctCount === 4) {
+                results += `<p style="color: #27ae60; font-weight: bold;">¡Excelente comprensión lectora! Has dominado completamente el texto.</p>`;
+            } else if (correctCount === 3) {
+                results += `<p style="color: #f39c12; font-weight: bold;">Muy buena comprensión lectora. Solo un pequeño detalle a mejorar.</p>`;
+            } else if (correctCount === 2) {
+                results += `<p style="color: #f39c12; font-weight: bold;">Comprensión lectora aceptable. Sigue practicando la lectura atenta.</p>`;
             } else {
-                results += `<p style="color: #e74c3c; font-weight: bold;">Necesitas practicar más resolución de problemas cuantitativos.</p>`;
+                results += `<p style="color: #e74c3c; font-weight: bold;">Necesitas practicar más la comprensión lectora. Lee más detenidamente los textos.</p>`;
             }
             results += `</div>`;
             

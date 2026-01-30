@@ -261,7 +261,7 @@
                 <div class="stat-label">Preguntas Respondidas</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number" id="totalPages">5</div>
+                <div class="stat-number" id="totalPages">6</div>
                 <div class="stat-label">Total de Páginas</div>
             </div>
         </div>
@@ -274,9 +274,10 @@
                 <li>Página 3: 1 pregunta + resultados</li>
                 <li>Página 4: 5 preguntas técnicas de desarrollo de sistemas</li>
                 <li>Página 5: 5 problemas cuantitativos (opción única A, B, C, D)</li>
+                <li>Página 6: 4 preguntas de comprensión lectora (opción única A, B, C, D)</li>
                 <li>Tus respuestas se guardan automáticamente</li>
                 <li>Puedes navegar libremente entre páginas</li>
-                <li>Al finalizar todas las páginas, ve a la página 5 para ver tus resultados finales</li>
+                <li>Al finalizar todas las páginas, ve a la página 6 para ver tus resultados finales</li>
             </ul>
         </div>
         
@@ -311,6 +312,12 @@
                 <div class="page-description">Problemas Cuantitativos<br>5 preguntas (A, B, C, D)</div>
             </a>
             
+            <a href="pagina6_lectura.html" class="page-card" style="background: linear-gradient(135deg, #8e44ad 0%, #7d3c98 100%);">
+                <div class="page-number">6</div>
+                <div class="page-title">Página 6</div>
+                <div class="page-description">Comprensión Lectora<br>4 preguntas (A, B, C, D)</div>
+            </a>
+            
             <a href="prueba_sena.html" class="page-card" style="background: linear-gradient(135deg, #27ae60 0%, #229954 100%);">
                 <div class="page-number">📄</div>
                 <div class="page-title">Versión Completa</div>
@@ -329,6 +336,7 @@
             const page3 = localStorage.getItem('prueba_sena_pagina3');
             const page4 = localStorage.getItem('prueba_sena_pagina4');
             const page5 = localStorage.getItem('prueba_sena_pagina5');
+            const page6 = localStorage.getItem('prueba_sena_pagina6');
             
             let completedPages = 0;
             let totalQuestions = 0;
@@ -353,13 +361,17 @@
                 completedPages++;
                 totalQuestions += Object.keys(JSON.parse(page5)).length;
             }
+            if (page6) {
+                completedPages++;
+                totalQuestions += Object.keys(JSON.parse(page6)).length;
+            }
             
             // Actualizar estadísticas
             document.getElementById('completedPages').textContent = completedPages;
             document.getElementById('totalQuestions').textContent = totalQuestions;
             
             // Actualizar barra de progreso
-            const progressPercentage = (completedPages / 5) * 100;
+            const progressPercentage = (completedPages / 6) * 100;
             document.getElementById('progressBar').style.width = progressPercentage + '%';
             
             // Actualizar colores de las tarjetas según progreso
@@ -382,6 +394,7 @@
                 localStorage.removeItem('prueba_sena_pagina3');
                 localStorage.removeItem('prueba_sena_pagina4');
                 localStorage.removeItem('prueba_sena_pagina5');
+                localStorage.removeItem('prueba_sena_pagina6');
                 updateProgress();
                 alert('¡Progreso reiniciado exitosamente!');
             }
