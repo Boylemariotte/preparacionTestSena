@@ -493,6 +493,7 @@
             let results = '<h3>Resultados - Problemas Cuantitativos:</h3>';
             let correctCount = 0;
             let incorrectCount = 0;
+            let unansweredCount = 0;
             
             for (let i = 1; i <= 5; i++) {
                 const userAnswer = selectedAnswers[i];
@@ -518,6 +519,13 @@
                     }
                 });
                 
+                // Si no hay respuesta, marcar como incorrecta
+                if (!userAnswer) {
+                    results += `<li><span class="incorrect-answer">¡NO RESPONDIDA!</span> Esta pregunta no fue respondida y se cuenta como incorrecta ✗</li>`;
+                    unansweredCount++;
+                    incorrectCount++; // Contar como incorrecta para el total
+                }
+                
                 results += '</ul>';
             }
             
@@ -525,6 +533,9 @@
             results += `<h4>Resumen Final:</h4>`;
             results += `<p><strong>Respuestas Correctas:</strong> ${correctCount}/5</p>`;
             results += `<p><strong>Respuestas Incorrectas:</strong> ${incorrectCount}/5</p>`;
+            if (unansweredCount > 0) {
+                results += `<p><strong style="color: #e74c3c;">Preguntas No Respondidas:</strong> ${unansweredCount}/5 (contadas como incorrectas)</p>`;
+            }
             results += `<p><strong>Porcentaje de Aciertos:</strong> ${((correctCount/5) * 100).toFixed(1)}%</p>`;
             
             if (correctCount >= 4) {
@@ -532,7 +543,11 @@
             } else if (correctCount >= 3) {
                 results += `<p style="color: #f39c12; font-weight: bold;">Buen desempeño, sigue practicando.</p>`;
             } else {
-                results += `<p style="color: #e74c3c; font-weight: bold;">Necesitas practicar más resolución de problemas cuantitativos.</p>`;
+                if (unansweredCount > 0) {
+                    results += `<p style="color: #e74c3c; font-weight: bold;">Necesitas practicar más resolución de problemas cuantitativos y asegúrate de responder todas las preguntas.</p>`;
+                } else {
+                    results += `<p style="color: #e74c3c; font-weight: bold;">Necesitas practicar más resolución de problemas cuantitativos.</p>`;
+                }
             }
             results += `</div>`;
             
