@@ -517,79 +517,434 @@
             });
         });
         
+        // Función para obtener todas las respuestas de todas las páginas
+        function getAllAnswers() {
+            const allAnswers = {};
+            
+            // Obtener respuestas de cada página
+            const page1 = localStorage.getItem('prueba_sena_pagina1');
+            const page2 = localStorage.getItem('prueba_sena_pagina2');
+            const page3 = localStorage.getItem('prueba_sena_pagina3');
+            const page4 = localStorage.getItem('prueba_sena_pagina4');
+            const page5 = localStorage.getItem('prueba_sena_pagina5');
+            const page6 = localStorage.getItem('prueba_sena_pagina6');
+            
+            if (page1) {
+                Object.assign(allAnswers, JSON.parse(page1));
+            }
+            if (page2) {
+                Object.assign(allAnswers, JSON.parse(page2));
+            }
+            if (page3) {
+                Object.assign(allAnswers, JSON.parse(page3));
+            }
+            if (page4) {
+                Object.assign(allAnswers, JSON.parse(page4));
+            }
+            if (page5) {
+                Object.assign(allAnswers, JSON.parse(page5));
+            }
+            if (page6) {
+                Object.assign(allAnswers, JSON.parse(page6));
+            }
+            
+            return allAnswers;
+        }
+        
+        // Respuestas correctas según el orden esperado - TODAS LAS PÁGINAS
+        const allCorrectAnswers = {
+            // Página 1 - Habilidades de comunicación y trabajo en equipo
+            // Pregunta 1 - Escucha activa (orden de importancia)
+            "5": "1",  // Escucha con mucha concentración los detalles de la conversación
+            "2": "2",  // Atiende las expresiones emocionales de la persona que le habla
+            "1": "3",  // Define su postura personal ante el problema, para poder ayudar a solucionarlo
+            "3": "4",  // Es atento, escucha comprensivamente y motiva a la persona a resolverlo por sí misma
+            "4": "5",  // Indaga la situación sin involucrarse emocionalmente porque puede afectar la solución
+            
+            // Pregunta 2 - Equipo de alto rendimiento (orden lógico)
+            "8": "1",  // Tener una comprensión clara de los objetivos
+            "6": "2",  // Delimitar los criterios de desempeño individual y grupal
+            "9": "3",  // Definir la responsabilidad de cada integrante
+            "10": "4", // Cooperar y colaborar con un alto grado de confianza
+            "7": "5",  // Estar orientado hacia los resultados
+            
+            // Página 2 - Materias y presentaciones (respuestas lógicas)
+            // Pregunta 3 - Materias importantes para desarrollo de software (orden de importancia)
+            "11": "1", // Informática (fundamental)
+            "13": "2", // Laboratorio (práctica)
+            "15": "3", // Inglés (documentación)
+            "14": "4", // Dibujo técnico (diseño)
+            "12": "5", // Español (secundario)
+            
+            // Pregunta 4 - Estrategia presentación efectiva (orden de impacto)
+            "19": "1", // Organizar la presentación solo con puntos claves
+            "16": "2", // Hacer preguntas cruciales
+            "18": "3", // Contar una historia
+            "20": "4", // Incluir videos reflexivos
+            "17": "5", // Añadir música en las diapositivas
+            
+            // Página 3 - Resolución de problemas
+            // Pregunta 5 - Remodelación (orden lógico)
+            "21": "1", // Diseñar un plan de remodelación empezando por lo más importante
+            "24": "2", // Consultar un experto en el tema
+            "23": "3", // Cotizar alternativas de remodelación
+            "22": "4", // Investigar las nuevas tendencias en remodelación
+            "25": "5", // Indagar material económico y hacer solo lo que está en las posibilidades
+            
+            // Página 4 - Desarrollo de Sistemas para principiantes
+            // Pregunta 6 - Habilidades para empezar a programar (orden de importancia)
+            "26": "1", // Saber resolver problemas lógicos (fundamental)
+            "28": "2", // Tener buena paciencia y perseverancia (mentalidad)
+            "27": "3", // Conocer al menos un lenguaje de programación (práctica)
+            "29": "4", // Saber buscar información en internet (autonomía)
+            "30": "5", // Trabajar bien en equipo (colaboración)
+            
+            // Pregunta 7 - Maneras de aprender a programar (orden de efectividad)
+            "33": "1", // Hacer proyectos pequeños y personales (práctica real)
+            "31": "2", // Practicar con ejercicios sencillos todos los días (consistencia)
+            "32": "3", // Ver tutoriales en video y seguirlos paso a paso (guiado)
+            "35": "4", // Unirse a comunidades de programadores (apoyo)
+            "34": "5", // Leer libros y documentación oficial (teoría)
+            
+            // Pregunta 8 - Aplicaciones fáciles para principiantes (orden de dificultad)
+            "36": "1", // Páginas web informativas (blog, portafolio) - más fácil
+            "37": "2", // Calculadoras y herramientas simples - muy práctico
+            "39": "3", // Apps de lista de tareas (to-do list) - intermedio
+            "38": "4", // Juegos sencillos (ahorcado, tres en raya) - divertido
+            "40": "5", // Redes sociales básicas - más complejo
+            
+            // Pregunta 9 - Herramientas esenciales (orden de importancia)
+            "41": "1", // Editor de código (como Visual Studio Code) - básico
+            "42": "2", // Navegador web (Chrome, Firefox) - indispensable
+            "43": "3", // Control de versiones (Git) - profesional
+            "44": "4", // Terminal o línea de comandos - avanzado
+            "45": "5", // Herramientas de diseño (Figma, Canva) - complementario
+            
+            // Pregunta 10 - Áreas de desarrollo (orden de demanda y accesibilidad)
+            "46": "1", // Desarrollo de páginas web (frontend) - más demandado
+            "47": "2", // Desarrollo de servidores y bases de datos (backend) - fundamental
+            "48": "3", // Aplicaciones móviles (Android, iOS) - popular
+            "49": "4", // Inteligencia artificial y machine learning - futuro
+            "50": "5"  // Ciberseguridad y protección de datos - especializado
+        };
+        
+        // Función auxiliar para obtener texto de opción (para páginas que no están cargadas)
+        function getOptionText(optionId) {
+            const optionTexts = {
+                // Página 1
+                "1": "Define su postura personal ante el problema, para poder ayudar a solucionarlo",
+                "2": "Atiende las expresiones emocionales de la persona que le habla",
+                "3": "Es atento, escucha comprensivamente y motiva a la persona a resolverlo por sí misma",
+                "4": "Indaga la situación sin involucrarse emocionalmente porque puede afectar la solución",
+                "5": "Escucha con mucha concentración los detalles de la conversación",
+                "6": "Delimitar los criterios de desempeño individual y grupal",
+                "7": "Estar orientado hacia los resultados",
+                "8": "Tener una comprensión clara de los objetivos",
+                "9": "Definir la responsabilidad de cada integrante",
+                "10": "Cooperar y colaborar con un alto grado de confianza",
+                // Página 2
+                "11": "Informática",
+                "12": "Español",
+                "13": "Laboratorio",
+                "14": "Dibujo técnico",
+                "15": "Inglés",
+                "16": "Hacer preguntas cruciales",
+                "17": "Añadir música en las diapositivas",
+                "18": "Contar una historia",
+                "19": "Organizar la presentación solo con puntos claves",
+                "20": "Incluir videos reflexivos",
+                // Página 3
+                "21": "Diseñar un plan de remodelación empezando por lo más importante",
+                "22": "Investigar las nuevas tendencias en remodelación",
+                "23": "Cotizar alternativas de remodelación",
+                "24": "Consultar un experto en el tema",
+                "25": "Indagar material económico y hacer solo lo que está en las posibilidades"
+            };
+            return optionTexts[optionId] || `Opción ${optionId}`;
+        }
+        
         // Manejar verificación final
         document.getElementById('submitBtn').addEventListener('click', function() {
             const resultDiv = document.getElementById('result');
+            const allAnswers = getAllAnswers();
             
-            let results = '<h3>Resultados - Comprensión Lectora:</h3>';
-            let correctCount = 0;
-            let incorrectCount = 0;
-            let unansweredCount = 0;
+            let results = '<h3>🎯 Verificación Completa de Todas las Respuestas:</h3>';
+            let totalCorrect = 0;
+            let totalIncorrect = 0;
+            let totalUnanswered = 0;
             
-            for (let i = 1; i <= 4; i++) {
-                const userAnswer = selectedAnswers[i];
-                const correctAnswer = correctAnswers[i];
+            // Preguntas 1-2 (Página 1) - Prioridades
+            const page1Questions = [
+                { number: 1, title: "Escucha Activa", options: ['1', '2', '3', '4', '5'] },
+                { number: 2, title: "Equipo de Alto Rendimiento", options: ['6', '7', '8', '9', '10'] }
+            ];
+            
+            page1Questions.forEach(question => {
+                results += `<h4>Pregunta ${question.number}: ${question.title}</h4><ul>`;
+                let correctCount = 0;
+                let incorrectCount = 0;
                 
-                results += `<h4>Pregunta ${i}:</h4>`;
-                results += '<ul>';
+                const sortedOptions = question.options
+                    .sort((a, b) => {
+                        const priorityA = allAnswers[a] || 999;
+                        const priorityB = allAnswers[b] || 999;
+                        return parseInt(priorityA) - parseInt(priorityB);
+                    });
                 
-                document.querySelectorAll(`.option[data-question="${i}"]`).forEach(opt => {
-                    const answer = opt.dataset.answer;
-                    const text = opt.querySelector('.option-text').textContent;
+                sortedOptions.forEach(optionId => {
+                    const text = getOptionText(optionId);
+                    const priority = allAnswers[optionId];
+                    const correctPriority = allCorrectAnswers[optionId];
                     
-                    if (answer === correctAnswer) {
-                        if (userAnswer === answer) {
-                            results += `<li><span class="correct-answer">${answer}.</span> ${text} ✓</li>`;
-                            correctCount++;
-                        } else {
-                            results += `<li><span class="correct-answer">${answer}.</span> ${text} (Correcta)</li>`;
-                        }
-                    } else if (userAnswer === answer) {
-                        results += `<li><span class="incorrect-answer">${answer}.</span> ${text} ✗</li>`;
+                    if (!priority) {
                         incorrectCount++;
+                        results += `<li><span class="incorrect-answer">Sin respuesta.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
+                    } else {
+                        const isCorrect = priority === correctPriority;
+                        if (isCorrect) {
+                            correctCount++;
+                            results += `<li><span class="correct-answer">${priority}.</span> ${text} ✓</li>`;
+                        } else {
+                            incorrectCount++;
+                            results += `<li><span class="incorrect-answer">${priority}.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
+                        }
                     }
                 });
                 
-                // Si no hay respuesta, marcar como incorrecta
-                if (!userAnswer) {
-                    results += `<li><span class="incorrect-answer">¡NO RESPONDIDA!</span> Esta pregunta no fue respondida y se cuenta como incorrecta ✗</li>`;
-                    unansweredCount++;
-                    incorrectCount++; // Contar como incorrecta para el total
-                }
+                results += '</ul>';
+                results += `<p><strong>Resumen Pregunta ${question.number}:</strong> ${correctCount} correctas, ${incorrectCount} incorrectas</p>`;
+                
+                totalCorrect += correctCount;
+                totalIncorrect += incorrectCount;
+            });
+            
+            // Preguntas 3-4 (Página 2) - Prioridades
+            const page2Questions = [
+                { number: 3, title: "Materias Importantes", options: ['11', '12', '13', '14', '15'] },
+                { number: 4, title: "Estrategia de Presentación", options: ['16', '17', '18', '19', '20'] }
+            ];
+            
+            page2Questions.forEach(question => {
+                results += `<h4>Pregunta ${question.number}: ${question.title}</h4><ul>`;
+                let correctCount = 0;
+                let incorrectCount = 0;
+                
+                const sortedOptions = question.options
+                    .sort((a, b) => {
+                        const priorityA = allAnswers[a] || 999;
+                        const priorityB = allAnswers[b] || 999;
+                        return parseInt(priorityA) - parseInt(priorityB);
+                    });
+                
+                sortedOptions.forEach(optionId => {
+                    const text = getOptionText(optionId);
+                    const priority = allAnswers[optionId];
+                    const correctPriority = allCorrectAnswers[optionId];
+                    
+                    if (!priority) {
+                        incorrectCount++;
+                        results += `<li><span class="incorrect-answer">Sin respuesta.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
+                    } else {
+                        const isCorrect = priority === correctPriority;
+                        if (isCorrect) {
+                            correctCount++;
+                            results += `<li><span class="correct-answer">${priority}.</span> ${text} ✓</li>`;
+                        } else {
+                            incorrectCount++;
+                            results += `<li><span class="incorrect-answer">${priority}.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
+                        }
+                    }
+                });
                 
                 results += '</ul>';
-            }
+                results += `<p><strong>Resumen Pregunta ${question.number}:</strong> ${correctCount} correctas, ${incorrectCount} incorrectas</p>`;
+                
+                totalCorrect += correctCount;
+                totalIncorrect += incorrectCount;
+            });
             
-            results += `<div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px;">`;
-            results += `<h4>Resumen Final - Comprensión Lectora:</h4>`;
-            results += `<p><strong>Respuestas Correctas:</strong> ${correctCount}/4</p>`;
-            results += `<p><strong>Respuestas Incorrectas:</strong> ${incorrectCount}/4</p>`;
-            if (unansweredCount > 0) {
-                results += `<p><strong style="color: #e74c3c;">Preguntas No Respondidas:</strong> ${unansweredCount}/4 (contadas como incorrectas)</p>`;
-            }
-            results += `<p><strong>Porcentaje de Aciertos:</strong> ${((correctCount/4) * 100).toFixed(1)}%</p>`;
+            // Pregunta 5 (Página 3) - Prioridades
+            results += `<h4>Pregunta 5: Remodelación de Casa</h4><ul>`;
+            let correctCount5 = 0;
+            let incorrectCount5 = 0;
+            const page5Options = ['21', '22', '23', '24', '25'];
             
-            if (correctCount === 4) {
-                results += `<p style="color: #27ae60; font-weight: bold;">¡Excelente comprensión lectora! Has dominado completamente el texto.</p>`;
-            } else if (correctCount === 3) {
-                results += `<p style="color: #f39c12; font-weight: bold;">Muy buena comprensión lectora. Solo un pequeño detalle a mejorar.</p>`;
-            } else if (correctCount === 2) {
-                results += `<p style="color: #f39c12; font-weight: bold;">Comprensión lectora aceptable. Sigue practicando la lectura atenta.</p>`;
-            } else {
-                if (unansweredCount > 0) {
-                    results += `<p style="color: #e74c3c; font-weight: bold;">Necesitas practicar más la comprensión lectora y asegúrate de responder todas las preguntas.</p>`;
+            const sortedOptions5 = page5Options
+                .sort((a, b) => {
+                    const priorityA = allAnswers[a] || 999;
+                    const priorityB = allAnswers[b] || 999;
+                    return parseInt(priorityA) - parseInt(priorityB);
+                });
+            
+            sortedOptions5.forEach(optionId => {
+                const text = getOptionText(optionId);
+                const priority = allAnswers[optionId];
+                const correctPriority = allCorrectAnswers[optionId];
+                
+                if (!priority) {
+                    incorrectCount5++;
+                    results += `<li><span class="incorrect-answer">Sin respuesta.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
                 } else {
-                    results += `<p style="color: #e74c3c; font-weight: bold;">Necesitas practicar más la comprensión lectora. Lee más detenidamente los textos.</p>`;
+                    const isCorrect = priority === correctPriority;
+                    if (isCorrect) {
+                        correctCount5++;
+                        results += `<li><span class="correct-answer">${priority}.</span> ${text} ✓</li>`;
+                    } else {
+                        incorrectCount5++;
+                        results += `<li><span class="incorrect-answer">${priority}.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
+                    }
                 }
+            });
+            
+            results += '</ul>';
+            results += `<p><strong>Resumen Pregunta 5:</strong> ${correctCount5} correctas, ${incorrectCount5} incorrectas</p>`;
+            
+            totalCorrect += correctCount5;
+            totalIncorrect += incorrectCount5;
+            
+            // Preguntas 6-10 (Página 4) - Prioridades
+            const systemQuestions = [
+                { number: 6, title: "Habilidades para Empezar", options: ['26', '27', '28', '29', '30'] },
+                { number: 7, title: "Maneras de Aprender", options: ['31', '32', '33', '34', '35'] },
+                { number: 8, title: "Aplicaciones Fáciles", options: ['36', '37', '38', '39', '40'] },
+                { number: 9, title: "Herramientas Esenciales", options: ['41', '42', '43', '44', '45'] },
+                { number: 10, title: "Áreas de Desarrollo", options: ['46', '47', '48', '49', '50'] }
+            ];
+            
+            systemQuestions.forEach(question => {
+                results += `<h4>Pregunta ${question.number}: ${question.title}</h4><ul>`;
+                let correctCount = 0;
+                let incorrectCount = 0;
+                
+                const sortedOptions = question.options
+                    .sort((a, b) => {
+                        const priorityA = allAnswers[a] || 999;
+                        const priorityB = allAnswers[b] || 999;
+                        return parseInt(priorityA) - parseInt(priorityB);
+                    });
+                
+                sortedOptions.forEach(optionId => {
+                    const text = getOptionText(optionId);
+                    const priority = allAnswers[optionId];
+                    const correctPriority = allCorrectAnswers[optionId];
+                    
+                    if (!priority) {
+                        incorrectCount++;
+                        results += `<li><span class="incorrect-answer">Sin respuesta.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
+                    } else {
+                        const isCorrect = priority === correctPriority;
+                        if (isCorrect) {
+                            correctCount++;
+                            results += `<li><span class="correct-answer">${priority}.</span> ${text} ✓</li>`;
+                        } else {
+                            incorrectCount++;
+                            results += `<li><span class="incorrect-answer">${priority}.</span> ${text} (Correcto: ${correctPriority}) ✗</li>`;
+                        }
+                    }
+                });
+                
+                results += '</ul>';
+                results += `<p><strong>Resumen Pregunta ${question.number}:</strong> ${correctCount} correctas, ${incorrectCount} incorrectas</p>`;
+                
+                totalCorrect += correctCount;
+                totalIncorrect += incorrectCount;
+            });
+            
+            // Preguntas 1-5 (Página 5) - Problemas cuantitativos
+            const mathCorrectAnswers = {
+                "1": "B",  // 6 segundos
+                "2": "A",  // 15 MB
+                "3": "A",  // 9 minutos
+                "4": "A",  // 7.2 días
+                "5": "B"   // 30 desarrolladores
+            };
+            
+            results += `<h4>Página 5 - Problemas Cuantitativos:</h4>`;
+            let mathCorrect = 0;
+            let mathIncorrect = 0;
+            
+            for (let i = 1; i <= 5; i++) {
+                const userAnswer = allAnswers[i];
+                const correctAnswer = mathCorrectAnswers[i];
+                
+                results += `<h5>Pregunta ${i}:</h5>`;
+                
+                if (!userAnswer) {
+                    mathIncorrect++;
+                    results += `<p><span class="incorrect-answer">Sin respuesta.</span> (Correcto: ${correctAnswer}) ✗</p>`;
+                } else if (userAnswer === correctAnswer) {
+                    mathCorrect++;
+                    results += `<p><span class="correct-answer">Respuesta ${userAnswer} ✓</span></p>`;
+                } else {
+                    mathIncorrect++;
+                    results += `<p><span class="incorrect-answer">Respuesta ${userAnswer} (Correcto: ${correctAnswer}) ✗</span></p>`;
+                }
+            }
+            
+            results += `<p><strong>Resumen Problemas Cuantitativos:</strong> ${mathCorrect} correctas, ${mathIncorrect} incorrectas</p>`;
+            
+            totalCorrect += mathCorrect;
+            totalIncorrect += mathIncorrect;
+            
+            // Preguntas 1-4 (Página 6) - Comprensión lectora
+            results += `<h4>Página 6 - Comprensión Lectora:</h4>`;
+            let readingCorrect = 0;
+            let readingIncorrect = 0;
+            
+            for (let i = 1; i <= 4; i++) {
+                const userAnswer = allAnswers[i];
+                const correctAnswer = correctAnswers[i];
+                
+                results += `<h5>Pregunta ${i}:</h5>`;
+                
+                if (!userAnswer) {
+                    readingIncorrect++;
+                    results += `<p><span class="incorrect-answer">Sin respuesta.</span> (Correcto: ${correctAnswer}) ✗</p>`;
+                } else if (userAnswer === correctAnswer) {
+                    readingCorrect++;
+                    results += `<p><span class="correct-answer">Respuesta ${userAnswer} ✓</span></p>`;
+                } else {
+                    readingIncorrect++;
+                    results += `<p><span class="incorrect-answer">Respuesta ${userAnswer} (Correcto: ${correctAnswer}) ✗</span></p>`;
+                }
+            }
+            
+            results += `<p><strong>Resumen Comprensión Lectora:</strong> ${readingCorrect} correctas, ${readingIncorrect} incorrectas</p>`;
+            
+            totalCorrect += readingCorrect;
+            totalIncorrect += readingIncorrect;
+            
+            // Resumen general
+            const totalQuestions = 54; // 50 de prioridad + 5 de matemáticas + 4 de lectura
+            const percentage = Math.round((totalCorrect / totalQuestions) * 100);
+            
+            results += `<h4>🎯 RESUMEN GENERAL COMPLETO:</h4>`;
+            results += `<div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px;">`;
+            results += `<p><strong>${totalCorrect} respuestas correctas</strong> y <strong>${totalIncorrect} respuestas incorrectas</strong> de ${totalQuestions} totales (${percentage}%)</p>`;
+            results += `<p><strong>Preguntas de Prioridad (Páginas 1-4):</strong> ${totalCorrect - mathCorrect - readingCorrect}/50 correctas</p>`;
+            results += `<p><strong>Problemas Cuantitativos (Página 5):</strong> ${mathCorrect}/5 correctas</p>`;
+            results += `<p><strong>Comprensión Lectora (Página 6):</strong> ${readingCorrect}/4 correctas</p>`;
+            
+            if (percentage >= 90) {
+                results += `<p style="color: #27ae60; font-weight: bold; margin-top: 15px;">¡EXCELENTE! Tienes un dominio excepcional de todas las áreas evaluadas.</p>`;
+                resultDiv.className = 'result success';
+            } else if (percentage >= 70) {
+                results += `<p style="color: #f39c12; font-weight: bold; margin-top: 15px;">¡MUY BUEN TRABAJO! Tienes sólidos conocimientos con algunas áreas a mejorar.</p>`;
+                resultDiv.className = 'result warning';
+            } else {
+                results += `<p style="color: #e74c3c; font-weight: bold; margin-top: 15px;">Sigue practicando. Cada área requiere más atención y estudio.</p>`;
+                resultDiv.className = 'result warning';
             }
             results += `</div>`;
             
             resultDiv.innerHTML = results;
             resultDiv.style.display = 'block';
-            resultDiv.className = 'result success';
             
             // Scroll hacia los resultados
             resultDiv.scrollIntoView({ behavior: 'smooth' });
+            
+            // Cambiar texto del botón a "Verificado"
+            this.textContent = 'Verificado';
         });
     </script>
 </body>
