@@ -177,11 +177,13 @@
             font-size: 14px;
             text-align: center;
             flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         @media (min-width: 768px) {
             .page-info {
                 font-size: 16px;
-                text-align: left;
             }
         }
         .nav-btn {
@@ -205,6 +207,10 @@
         }
         .nav-btn.next {
             background-color: #3498db;
+            color: white;
+        }
+        .nav-btn.home {
+            background-color: #27ae60;
             color: white;
         }
         .nav-btn:hover {
@@ -351,8 +357,9 @@
         </div>
         
         <div class="navigation">
-            <div class="page-info">Página 1 de 3</div>
             <a href="pagina2.html" class="nav-btn next">Siguiente →</a>
+            <div class="page-info">Página 1 de 4</div>
+            <a href="index.html" class="nav-btn home">🏠 Inicio</a>
         </div>
     </div>
 

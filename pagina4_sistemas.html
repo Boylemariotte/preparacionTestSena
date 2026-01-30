@@ -178,11 +178,13 @@
             font-size: 14px;
             text-align: center;
             flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         @media (min-width: 768px) {
             .page-info {
                 font-size: 16px;
-                text-align: left;
             }
         }
         .nav-btn {
@@ -206,6 +208,10 @@
         }
         .nav-btn.prev {
             background-color: #95a5a6;
+            color: white;
+        }
+        .nav-btn.home {
+            background-color: #27ae60;
             color: white;
         }
         .nav-btn:hover {
@@ -596,7 +602,7 @@
         <div class="navigation">
             <a href="pagina3.html" class="nav-btn prev">← Anterior</a>
             <div class="page-info">Página 4 de 4</div>
-            <div></div>
+            <a href="index.html" class="nav-btn home">🏠 Inicio</a>
         </div>
     </div>
 
